@@ -1,0 +1,24 @@
+============= set pm2 =============
+1. set sftp.json
+2. send flie to server
+3. open terminal 
+   >> ssh u6511860007@203.188.54.9
+   >> Are you sure you want to continue connecting (yes/no/[fingerprint])? ......... [yes]
+   >> u6511860007@203.188.54.9's password: 6511860007abc
+   >> cd public_html/
+   >> cd emp-dev1/
+   >> pm2 start app.js -n "emp"
+   >> nano .htaccess [plate code AJ.job]
+      DirectoryIndex login
+
+        RewriteEngine On
+
+        RewriteRule ^$ http://127.0.0.1:3000/ [P,L]
+
+        RewriteCond %{REQUEST_FILENAME} !-f
+
+        RewriteCond %{REQUEST_FILENAME} !-d
+
+        RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
+   >> pm2 delete 0
+   http://203.188.54.9/~u6511860007/emp-dev1/

@@ -1,18 +1,17 @@
 const oracledb = require('oracledb');
 
-const dbConfig = {
-    user: 'inno082',
-    password: 'P029E13',
-    connectString: '203.188.54.7:1521/database'
-};
-
-async function connectDB() {
-    try {
-        await oracledb.createPool(dbConfig);
-        console.log('Connected to Oracle Database');
-    } catch (error) {
-        console.error('Error connecting to Oracle Database:', error);
-    }
+async function connectToDatabase() {
+  try {
+    await oracledb.initOracleClient({ mode: 'OCI' });
+    const connection = await oracledb.getConnection({
+      user: 'inno082',
+      password: 'P029E13',
+      connectString: '203.188.54.7:1521/database'
+    });
+    return connection;
+  } catch (error) {
+    throw error;
+  }
 }
 
-module.exports = connectDB;
+module.exports = { connectToDatabase };
