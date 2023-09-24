@@ -1,0 +1,18 @@
+install lib
+|
+|- npm init -y
+|- npm install cors
+|- npm install -g nodemon
+|- npm install express ejs oracledb bcryptjs passport passport-local      
+
+
+Oracle Instant Client Downloads Ms (Extract to c:/)
+|
+|- https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html
+|- Basic, SDK
+
+Enviroment Setiing
+|
+|- User Enviroment -> new -> 'OCI_INC_DIR':'C:\instantclient_21_11\sdk\include'
+|- User Enviroment -> new -> 'OCI_LIB_DIR':'C:\instantclient_21_11\sdk\lib\msvc'
+|- User Enviroment|Path -> new -> C:\instantclient_21_11' 
