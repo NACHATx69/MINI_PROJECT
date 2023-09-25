@@ -8,7 +8,13 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var pages_contactRouter = require("./routes/page_contract");
 var pages_blankRouter = require("./routes/page-blank");
-var pages_loginRouter = require("./routes/page-login");
+var loginRouter = require("./routes/login");
+var profileRouter = require("./routes/profile");
+var registerRouter = require("./routes/register");
+var testCode_gameRouter = require("./routes/testCode_game");
+var testCode_skyRouter = require("./routes/testCode_sky");
+var testCode_ohmRouter = require("./routes/testCode_ohm");
+var faqRouter = require("./routes/faq");
 var app = express();
 
 // view engine setup
@@ -25,7 +31,13 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/contact", pages_contactRouter);
 app.use("/pages-blank", pages_blankRouter);
-app.use("/login", pages_loginRouter);
+app.use("/login",loginRouter);
+app.use("/profile",profileRouter);
+app.use("/register",registerRouter);
+app.use("/game",testCode_gameRouter);
+app.use("/sky",testCode_skyRouter);
+app.use("/ohm",testCode_ohmRouter);
+app.use("/faq",faqRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
