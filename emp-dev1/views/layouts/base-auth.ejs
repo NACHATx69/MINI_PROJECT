@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= post.title %></title>
+  <%- include('../includes/head') %>
+</head>
+<body>
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <!-- header Title -->
+    <%- include('../includes/header') %>
+
+  </header>
+  <nav class="header-nav ms-auto">
+    <%- include('../includes/navigation') %>
+  </nav>
+  <main id="main" class="main">
+
+    <!-- Page Title -->
+    <div class="pagetitle">
+      <h1><%= post.title %></h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href=''>หน้าแรก</a></li> 
+          <li class="breadcrumb-item active"><%= post.title %></li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- content -->
+    
+    <%- include(post.content) %>
+
+
+  </main>
+  <footer id="footer" class="footer">
+    <%- include('../includes/footer') %>
+  </footer>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <%- include('../includes/scripts') %>
+</body>
+</html>
