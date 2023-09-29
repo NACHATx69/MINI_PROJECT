@@ -14,6 +14,7 @@ var registerRouter = require("./routes/register");
 var testCode_gameRouter = require("./routes/testCode_game");
 var testCode_skyRouter = require("./routes/testCode_sky");
 var testCode_ohmRouter = require("./routes/testCode_ohm");
+var interviewRouter = require("./routes/page_interview");
 var faqRouter = require("./routes/faq");
 var app = express();
 
@@ -31,14 +32,14 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/contact", pages_contactRouter);
 app.use("/pages-blank", pages_blankRouter);
-app.use("/login",loginRouter);
-app.use("/profile",profileRouter);
-app.use("/register",registerRouter);
-app.use("/game",testCode_gameRouter);
-app.use("/sky",testCode_skyRouter);
-app.use("/ohm",testCode_ohmRouter);
-app.use("/faq",faqRouter);
-
+app.use("/login", loginRouter);
+app.use("/profile", profileRouter);
+app.use("/register", registerRouter);
+app.use("/game", testCode_gameRouter);
+app.use("/sky", testCode_skyRouter);
+app.use("/ohm", testCode_ohmRouter);
+app.use("/faq", faqRouter);
+app.use("/pages-interview", interviewRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
