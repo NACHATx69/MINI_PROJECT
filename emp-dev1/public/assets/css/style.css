@@ -9,12 +9,15 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Noto Sans Thai:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600&display=swap');
+
 :root {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Noto Sans Thai", sans-serif;
   background: #f6f9ff;
   color: #444444;
 }
@@ -35,7 +38,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito", sans-serif;
+  font-family: "Noto Sans Thai", sans-serif;
+  font-weight: 400;
 }
 
 /*--------------------------------------------------------------
@@ -52,10 +56,30 @@ h6 {
     padding: 20px;
   }
 }
+/*--------------------------------------------------------------
+# Alert
+--------------------------------------------------------------*/
+#success-alert {
+  display: none; /* ซ่อนข้อความเริ่มต้น */
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out; /* ทำให้มีการเปลี่ยนแปลง opacity เป็นเวลา 0.5 วินาที */
+}
+
+/* เมื่อแสดงข้อความ */
+#success-alert.show {
+  display: block; /* แสดงข้อความ */
+  opacity: 1; /* กำหนด opacity เป็น 1 เมื่อแสดง */
+  transition: opacity 0.5s ease-in-out; /* ทำให้มีการเปลี่ยนแปลง opacity เป็นเวลา 0.5 วินาที */
+}
 
 /*--------------------------------------------------------------
 # Page Title
 --------------------------------------------------------------*/
+section{
+  font-size: 16px;
+  font-family: "Noto Sans Thai",sans-serif;
+}
+
 .pagetitle {
   margin-bottom: 10px;
 }
@@ -63,7 +87,7 @@ h6 {
 .pagetitle h1 {
   font-size: 24px;
   margin-bottom: 0;
-  font-weight: 600;
+  font-weight: 400;
   color: #012970;
 }
 
@@ -235,9 +259,9 @@ h6 {
 .card-title {
   padding: 20px 0 15px 0;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   color: #012970;
-  font-family: "Poppins", sans-serif;
+  font-family: "Noto Sans Thai", sans-serif;
 }
 
 .card-title span {
@@ -256,8 +280,8 @@ h6 {
 
 /* Alerts */
 .alert-heading {
-  font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-family: "Noto Sans Thai", sans-serif;
   font-size: 20px;
 }
 
@@ -306,9 +330,9 @@ h6 {
 /* Breadcrumbs */
 .breadcrumb {
   font-size: 14px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Noto Sans Thai", sans-serif;
   color: #899bbd;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .breadcrumb a {
@@ -373,7 +397,7 @@ h6 {
   font-size: 26px;
   font-weight: 700;
   color: #012970;
-  font-family: "Nunito", sans-serif;
+  font-family: "Noto Sans Thai", sans-serif;
 }
 
 .header {
@@ -806,7 +830,7 @@ h6 {
 .dashboard .info-card h6 {
   font-size: 28px;
   color: #012970;
-  font-weight: 700;
+  font-weight: 600;
   margin: 0;
   padding: 0;
 }
@@ -1003,7 +1027,7 @@ h6 {
 
 .profile .profile-card h2 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   color: #2c384e;
   margin: 10px 0 0 0;
 }
@@ -1035,12 +1059,12 @@ h6 {
 }
 
 .profile .profile-overview .label {
-  font-weight: 600;
+  font-weight: 400;
   color: rgba(1, 41, 112, 0.6);
 }
 
 .profile .profile-edit label {
-  font-weight: 600;
+  font-weight: 400;
   color: rgba(1, 41, 112, 0.6);
 }
 
@@ -1053,7 +1077,7 @@ h6 {
 --------------------------------------------------------------*/
 .faq .basic h6 {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   color: #4154f1;
 }
 
@@ -1077,7 +1101,7 @@ h6 {
 .contact .info-box h3 {
   font-size: 20px;
   color: #012970;
-  font-weight: 700;
+  font-weight: 400;
   margin: 20px 0 10px 0;
 }
 
@@ -1095,7 +1119,7 @@ h6 {
   text-align: left;
   padding: 15px;
   margin-bottom: 24px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .contact .php-email-form .sent-message {
@@ -1105,7 +1129,7 @@ h6 {
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .contact .php-email-form .loading {

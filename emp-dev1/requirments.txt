@@ -6,6 +6,11 @@ install lib
 |- npm install express ejs oracledb bcryptjs passport passport-local      
 
 
+Session Cookie Authentication
+|- npm install express body-parser cookie-parser uuid
+
+
+
 Oracle Instant Client Downloads Ms (Extract to c:/)
 |
 |- https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html
