@@ -4,7 +4,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   const post ={
     title: 'ประกาศรับสมัครงาน',
-    content: '../pages/career_detail'
+    content: '../pages/detail_career'
   }
 res.render('layouts/base',{post:post});
 });

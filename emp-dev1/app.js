@@ -12,14 +12,14 @@ var pages_blankRouter = require("./routes/page-blank");
 var loginRouter = require("./routes/login");
 var profileRouter = require("./routes/profile");
 var registerRouter = require("./routes/register");
-var testCode_gameRouter = require("./routes/testCode_game");
-var testCode_skyRouter = require("./routes/testCode_sky");
-var testCode_ohmRouter = require("./routes/testCode_ohm");
 var faqRouter = require("./routes/faq");
 var board_postRouter = require("./routes/board_post");
 var careerRouter = require("./routes/career");
-var careerDetailRouter = require("./routes/career_detail");
-var applicationRouter = require("./routes/application")
+var careerDetailRouter = require("./routes/detail_career");
+var jobDetailRouter = require("./routes/detail_job");
+var applicationRouter = require("./routes/application");
+var createJobDesRouter = require("./routes/createJobDescription");
+var jobListRouter = require("./routes/jobList");
 
 var app = express();
 
@@ -35,19 +35,19 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", board_postRouter);
 app.use("/users", usersRouter);
+app.use("/faq", pages_contactRouter);
 app.use("/contact", pages_contactRouter);
 app.use("/pages-blank", pages_blankRouter);
 app.use("/login",loginRouter);
 app.use("/profile",profileRouter);
 app.use("/register",registerRouter);
-app.use("/game",testCode_gameRouter);
-app.use("/sky",testCode_skyRouter);
-app.use("/ohm",testCode_ohmRouter);
-app.use("/faq",faqRouter);
 app.post("/welcome",addUserRouter);
 app.use("/career",careerRouter);
 app.use("/career_detail",careerDetailRouter);
 app.use("/application",applicationRouter)
+app.use("/createJobDescription",createJobDesRouter)
+app.use("/jobList",jobListRouter)
+app.use("/jobDetail",jobDetailRouter)
 
 
 
