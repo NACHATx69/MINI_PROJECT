@@ -10,6 +10,7 @@ router.post('/welcome', function(req, res, next) {
   const payload = req.body;
   const userData = JSON.stringify(payload);
   const data = JSON.parse(userData);
+
   const post ={
     title: 'Register',
     content: '../pages/register',
@@ -22,12 +23,14 @@ router.post('/welcome', function(req, res, next) {
     LNAME: data.LNAME,
     DEPARTMENT: data.DEPARTMENT,
     POSITIONS: data.POSITIONS,
-    PERMISTION: data.PERMISTION,
+    // PERMISTION: data.PERMISTION,
     MGR_ID: data.MGR_ID,
     USERNAME: data.USERNAME,
     PASS: data.PASS,
     HIREDATE: new Date(data.HIREDATE),
   };
+
+  console.log(newEmployeeData);
 
   creatUser(newEmployeeData)
   .then(result => {
@@ -37,6 +40,7 @@ router.post('/welcome', function(req, res, next) {
   .catch(error => {
     console.error('Error inserting data:', error);
     res.redirect('/register?create=fail');
+    console.log(newEmployeeData);
     
   });
 

@@ -17,6 +17,8 @@ async function getUserData() {
       
     });
 
+    console.log(data)
+
     await connection.close();
     return data;
   } catch (error) {

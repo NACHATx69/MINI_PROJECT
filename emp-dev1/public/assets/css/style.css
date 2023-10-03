@@ -56,6 +56,16 @@ h6 {
     padding: 20px;
   }
 }
+.container{
+  font-family: 'Noto Sans Thai', sans-serif;
+  font-size: 14px;
+}
+.cover-career{
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+.form-label{
+  color: #717171;
+}
 /*--------------------------------------------------------------
 # Alert
 --------------------------------------------------------------*/
@@ -85,8 +95,8 @@ section{
 }
 
 .pagetitle h1 {
-  font-size: 24px;
-  margin-bottom: 0;
+  font-size: 20px;
+  margin-bottom: 2px;
   font-weight: 400;
   color: #012970;
 }
@@ -329,7 +339,8 @@ section{
 
 /* Breadcrumbs */
 .breadcrumb {
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 10px;
   font-family: "Noto Sans Thai", sans-serif;
   color: #899bbd;
   font-weight: 400;
@@ -367,6 +378,7 @@ section{
 .nav-tabs-bordered .nav-link:hover,
 .nav-tabs-bordered .nav-link:focus {
   color: #4154f1;
+  
 }
 
 .nav-tabs-bordered .nav-link.active {
@@ -416,6 +428,7 @@ section{
   padding-left: 10px;
   cursor: pointer;
   color: #012970;
+  
 }
 
 .header .search-bar {
@@ -483,6 +496,7 @@ section{
 --------------------------------------------------------------*/
 .header-nav ul {
   list-style: none;
+  font-family: 'Noto Sans Thai', sans-serif;
 }
 
 .header-nav>ul {

@@ -9,7 +9,7 @@ async function creatUser(employeeData) {
     // ทำตามคำสั่ง SQL ที่ต้องการ
     const sql = `
     INSERT INTO employee (EMP_ID, FNAME, LNAME, DEPARTMENT, POSITIONS, PERMISTION, MGR_ID,STATUS, USERNAME, PASS, HIREDATE, EXITDATE)
-    VALUES (:EMP_ID, :FNAME, :LNAME, :DEPARTMENT, :POSITIONS, :PERMISTION, :MGR_ID,'0', :USERNAME, :PASS, :HIREDATE, null)
+    VALUES (:EMP_ID, :FNAME, :LNAME, :DEPARTMENT, :POSITIONS, '', :MGR_ID,'0', :USERNAME, :PASS, :HIREDATE, null)
   `;
 
   
@@ -21,7 +21,7 @@ async function creatUser(employeeData) {
       LNAME: { type: oracledb.STRING },
       DEPARTMENT: { type: oracledb.STRING },
       POSITIONS: { type: oracledb.STRING },
-      PERMISTION: { type: oracledb.STRING },
+      // PERMISTION: { type: oracledb.STRING },
       MGR_ID: { type: oracledb.STRING },
       USERNAME: { type: oracledb.STRING },
       PASS: { type: oracledb.STRING },

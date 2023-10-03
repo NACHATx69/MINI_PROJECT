@@ -31,7 +31,7 @@ router.get("/", async function (req, res, next) {
 
         const post ={
           title: 'สร้างบัญชีผู้ใช้',
-          content: '../pages/register',
+          content: '../pages/application',
           dept: dataDept,
           posittion: dataPossition,
           role: dataRole,
