@@ -8,7 +8,8 @@ install lib
 
 Session Cookie Authentication
 |- npm install express body-parser cookie-parser uuid
-
+|- npm install --save handy-storage
+|- npm install axios
 
 
 Oracle Instant Client Downloads Ms (Extract to c:/)

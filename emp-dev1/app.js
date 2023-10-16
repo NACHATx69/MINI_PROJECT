@@ -2,6 +2,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 const bodyParser = require('body-parser')
+const jsonparser = bodyParser.json()
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
@@ -20,6 +21,7 @@ var jobDetailRouter = require("./routes/detail_job");
 var applicationRouter = require("./routes/application");
 var createJobDesRouter = require("./routes/createJobDescription");
 var jobListRouter = require("./routes/jobList");
+var authenRouter = require("./routes/auth");
 
 var app = express();
 
@@ -48,7 +50,8 @@ app.use("/application",applicationRouter)
 app.use("/createJobDescription",createJobDesRouter)
 app.use("/jobList",jobListRouter)
 app.use("/jobDetail",jobDetailRouter)
-
+app.use("/login",jobDetailRouter)
+app.use("/authen",authenRouter)
 
 
 // catch 404 and forward to error handler

@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  const post ={
-    title: 'Register',
-    content: '../pages/login_game'
-  }
-res.render('layouts/base',{post:post});
+const HandyStorage = require('handy-storage');
+const storage = new HandyStorage({
+    beautify: true,
 });
+
+storage.connect('../information.json');
+
+console.log('storage '+JSON.stringify(storage.state));
+
 
 module.exports = router;

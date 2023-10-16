@@ -1,0 +1,17 @@
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMjU2NjEwMDUyIiwiaWF0IjoxNjk3NDAxODgxLCJleHAiOjE2OTc0MTI2ODF9.dA3b_wzzjXQ3MD7N2RmTypMgwB6MtjVkHy9Cje7bk2s",
+    "account": [
+        {
+            "EMP_ID": "256610052",
+            "FNAME": "สมศรี",
+            "LNAME": "เดินสาย",
+            "DEPARTMENT": "d05",
+            "POSITIONS": "p04",
+            "MGR_ID": null,
+            "STATUS": "0",
+            "PASS": "1234",
+            "HIREDATE": "2023-10-11T00:00:00.000Z",
+            "EXITDATE": null
+        }
+    ]
+}

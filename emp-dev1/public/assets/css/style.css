@@ -707,12 +707,13 @@ section{
 
 .sidebar-nav .nav-item {
   margin-bottom: 5px;
+  padding-left: 10px;
 }
 
 .sidebar-nav .nav-heading {
-  font-size: 11px;
+  font-size: 14px;
   text-transform: uppercase;
-  color: #899bbd;
+  color: #012970;
   font-weight: 600;
   margin: 10px 0 5px 15px;
 }
@@ -721,7 +722,7 @@ section{
   display: flex;
   align-items: center;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 400;
   color: #4154f1;
   transition: 0.3;
   background: #f6f9ff;
@@ -741,7 +742,7 @@ section{
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #364e7b;
 }
 
 .sidebar-nav .nav-link:hover {
@@ -1269,3 +1270,4 @@ section{
   font-size: 13px;
   color: #012970;
 }
+

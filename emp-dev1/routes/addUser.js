@@ -25,7 +25,6 @@ router.post('/welcome', function(req, res, next) {
     POSITIONS: data.POSITIONS,
     // PERMISTION: data.PERMISTION,
     MGR_ID: data.MGR_ID,
-    USERNAME: data.USERNAME,
     PASS: data.PASS,
     HIREDATE: new Date(data.HIREDATE),
   };

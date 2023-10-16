@@ -4,7 +4,7 @@ async function getRole() {
   try {
     const connection = await connectToDatabase();
     // ทำตามคำสั่ง SQL ที่ต้องการ
-    const query = "SELECT * FROM POS_PER";
+    const query = "SELECT * FROM PERMISTION";
     const result = await connection.execute(query);
 
     //json file
@@ -23,5 +23,5 @@ async function getRole() {
     throw error;
   }
 };
-// getRole()
+getRole()
 module.exports = { getRole };
