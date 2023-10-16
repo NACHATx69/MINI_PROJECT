@@ -22,6 +22,7 @@ var applicationRouter = require("./routes/application");
 var createJobDesRouter = require("./routes/createJobDescription");
 var jobListRouter = require("./routes/jobList");
 var authenRouter = require("./routes/auth");
+var detailApplicantRouter = require("./routes/detail_applicant");
 
 var app = express();
 
@@ -52,6 +53,7 @@ app.use("/jobList",jobListRouter)
 app.use("/jobDetail",jobDetailRouter)
 app.use("/login",jobDetailRouter)
 app.use("/authen",authenRouter)
+app.use("/applicant",detailApplicantRouter)
 
 
 // catch 404 and forward to error handler

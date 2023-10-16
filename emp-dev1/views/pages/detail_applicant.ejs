@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="card-body">
+      <div class="py-5 text-center">
+      </div>
+
+      <h2 class="border-bottom pb-2">ผู้สมัครงาน</h2>
+
+      <section class="py-5 text-center container">
+
+        <div class="col-12">
+          <table class="table table-borderless fixed_header">
+            <thead>
+              <tr>
+                <th style="width: 50px;"> </th>
+                <th style="width: 150px;">รหัส</th>
+                <th>ชื่อ</th>
+                <th>นามสกุล</th>
+                <th>ประสบการณ์</th>
+                <th style="width: 35%;">EXP</th>
+                <th>ความสามารถ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% post.sql.forEach(function(row, index) { %>
+                <tr>
+                  <td style="width:50px;"><%= index + 1 %></td> 
+                  <td style="width: 150px;"><%= row.APPL_ID %></td>
+                  <td><%= row.FNAME %></td>
+                  <td><%= row.LNAME %></td>
+                  <td><%= row.EMAIL %></td>
+                  <td style="width: 35%;"><%= row.EXP %></td>
+                  <td><%= row.LINK_FOLIO %></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+
+        </div>
+      </section>
+    </div>
+  </div>

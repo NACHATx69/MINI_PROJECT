@@ -82,6 +82,27 @@ h6 {
   transition: opacity 0.5s ease-in-out; /* ทำให้มีการเปลี่ยนแปลง opacity เป็นเวลา 0.5 วินาที */
 }
 
+.fixed_header {
+  width: 400px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.fixed_header tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 300px;
+}
+.fixed_header thead tr {
+  display: block;
+}
+.fixed_header th,
+.fixed_header td {
+  padding: 5px;
+  text-align: left;
+  width: 200px;
+}
+
 /*--------------------------------------------------------------
 # Page Title
 --------------------------------------------------------------*/
