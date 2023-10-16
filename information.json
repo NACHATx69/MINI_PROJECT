@@ -1,0 +1,18 @@
+{
+    "tokened": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMjU2NjEwMDI4IiwiaWF0IjoxNjk3MTMyOTcwLCJleHAiOjE2OTcxNDM3NzB9.KPS7PklGXMGoHiAcGLEuXfmGClpPDxYuaLAySEp0X-c",
+    "account": [
+        {
+            "EMP_ID": "256610028",
+            "FNAME": "Nachat",
+            "LNAME": "Thotum",
+            "DEPARTMENT": "d01",
+            "POSITIONS": "p01",
+            "MGR_ID": "e023",
+            "STATUS": "0",
+            "USERNAME": "user",
+            "PASS": "1234",
+            "HIREDATE": "2023-10-12T00:00:00.000Z",
+            "EXITDATE": null
+        }
+    ]
+}
