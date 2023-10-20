@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="card-body ">
+    <div class="py-5 text-center">
+    </div>
+
+    <!-- Alert -->
+    <% if (post.create === 'success') { %>
+      <div class="alert alert-success" id="success-alert">
+        ส่งข้อมูลเรียบร้อย
+      </div>
+    <% }else if (post.create === 'fail') { %>
+      <div class="alert alert-danger" id="success-alert">
+        ส่งข้อมูลไม่สำเร็จ
+      </div>
+    <% } %>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const successAlert = document.getElementById("success-alert");
+
+        if (successAlert) {
+          setTimeout(function () {
+            successAlert.classList.add("show");
+          }, 100); 
+
+          setTimeout(function () {
+            successAlert.classList.remove("show");
+          }, 5000); 
+        }
+      });
+    </script>
+
+    <div class="row g-5 justify-content-center">
+      <div class="col-md-7 col-lg-8">
+        <h2 class="border-bottom pb-2">ข้อมูลสมัครงาน</h2>
+
+        <div class="row g-3 mt-5 justify-content-end">
+          <div class="col-10 ">
+            <h5 class="mb-3 text-end">รหัสผู้สมัคร</h5>
+          </div> 
+          <div class="col-2">
+            <h6>
+              <span class="badge bg-primary rounded-pill">#<%= post.empID %></span>
+            </h6>
+          </div>
+        </div>
+      
+        <form class="needs-validation" novalidate action="/welcome" method="post">
+          <div class="row g-3">
+            
+            <div class="col-sm-12" style="display: none;">
+              <label for="firstName" class="form-label">รหัสพนักงาน</label>
+              <input type="text" class="form-control" id="EMP_ID" name="EMP_ID" value="<%= post.empID %>" required readonly>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+            <div class="col-sm-8">
+            </div>
+
+            <div class="col-sm-9">
+            </div>
+
+            <div class="col-sm-3">
+              <label for="lastName" class="form-label">เงินเดือนที่คาดหวัง</label>
+              <input type="text" class="form-control" id="FNAME" name="FNAME" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                required.
+              </div>
+            </div>
+
+            <div class="col-12 text-end">
+              <p>ตำแหน่งที่สมัคร: วิศวกร</p>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">ชื่อ</label>
+              <input type="text" class="form-control" id="FNAME" name="FNAME" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">นามสกุล</label>
+              <input type="text" class="form-control" id="LNAME" name="LNAME" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                required.
+              </div>
+            </div>
+            
+            <div class="col-md-12">
+              <label for="country" class="form-label">ระดับการศึกษา</label>
+              <select class="form-select" id="MGR_ID" name="MGR_ID" required>
+                <option value="" selected>ระบุ....</option> 
+                  <option value="">มัธยมศึกษาปีที่ตอนต้น</option>
+                  <option value="">มัธยมศึกษาตอนปลาย</option>
+                  <option value="">ประกาศนียบัตรวิชาชีพ ปวช</option>
+                  <option value="">ระดับประกาศนียบัตรวิชาชีพชั้นสูง ปวส</option>
+                  <option value="">ปริญญาตรี</option>
+                  <option value="">ปริญญาตรีโทร</option>
+                  <option value="">ปริญญาเอก</option>
+              </select>
+              <div class="invalid-feedback">
+                required.
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <label for="lastName" class="form-label">ที่อยู่</label>
+              <input type="text" class="form-control" id="FNAME" name="FNAME" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                required.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">เบอร์มือถือ</label>
+              <input type="text" class="form-control" id="USERNAME" name="USERNAME" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid first username is required.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">อีเมล</label>
+              <input type="text" class="form-control" id="PASS" name="PASS" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid last password is required.
+              </div>
+            </div>
+
+            
+
+          </div>
+          <hr class="mt-4">
+
+          <div class="col justify-content-center " >
+            <div class="row justify-content-center mt-4">
+              <button class="w-50 btn btn-primary btn-lg mt-4" type="submit">สร้างบัญชีผู้ใช้</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="height: 100vh;">
+
+  </div>
+</div>

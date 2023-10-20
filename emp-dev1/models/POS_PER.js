@@ -23,5 +23,5 @@ async function getRole() {
     throw error;
   }
 };
-getRole()
+// getRole()
 module.exports = { getRole };

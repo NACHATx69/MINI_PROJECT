@@ -26,6 +26,6 @@ async function getUserData() {
   }
 };
 
-getUserData()
+// getUserData()
 
 module.exports = { getUserData };

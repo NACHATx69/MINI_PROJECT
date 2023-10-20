@@ -15,7 +15,7 @@ async function getPosittion() {
       }
       return data;
     });
-    console.log(data);
+    // console.log(data);
     await connection.close();
     return data;
     

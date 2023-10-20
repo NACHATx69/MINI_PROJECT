@@ -25,14 +25,7 @@
     </style>
   </head>
   <body>
-    <header id="header" class="header fixed-top d-flex align-items-center">
-      <!-- header Title -->
-      <%- include('../includes/header-authen') %>
-    </header>
-    <nav class="header-nav ms-auto">
-      <%- include('../includes/navigation-authen') %>
-    </nav>
-    <main id="main" class="main">
+    <main>
       <!-- Page Title -->
       <!-- <div class="pagetitle">
         <h1><%= post.title %></h1>
@@ -48,15 +41,5 @@
 
       <%- include(post.content) %>
     </main>
-    <footer id="footer" class="footer">
-      <%- include('../includes/footer') %>
-    </footer>
-    <a
-      href="#"
-      class="back-to-top d-flex align-items-center justify-content-center"
-      ><i class="bi bi-arrow-up-short"></i
-    ></a>
-
-    <%- include('../includes/scripts') %>
   </body>
 </html>

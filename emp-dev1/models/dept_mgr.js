@@ -4,7 +4,7 @@ async function mgr_name() {
   try {
     const connection = await connectToDatabase();
     // ทำตามคำสั่ง SQL ที่ต้องการ
-    const query = "SELECT DEPT_NAME, DEPARTMENT.MGR_ID,fname, lname FROM EMPLOYEE, DEPARTMENT WHERE (DEPARTMENT.MGR_ID=EMPLOYEE.EMP_ID)";
+    const query = "SELECT DEPT_ID,DEPT_NAME, DEPARTMENT.MGR_ID,fname, lname FROM EMPLOYEE, DEPARTMENT WHERE (DEPARTMENT.MGR_ID=EMPLOYEE.EMP_ID)";
     const result = await connection.execute(query);
 
     //json file
@@ -19,7 +19,7 @@ async function mgr_name() {
     });
 
     await connection.close();
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     throw error;

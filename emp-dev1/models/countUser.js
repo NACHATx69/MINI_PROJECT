@@ -26,6 +26,6 @@ async function countUser() {
   }
 };
 
-countUser()
+// countUser()
 
 module.exports = { countUser };

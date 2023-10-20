@@ -15,11 +15,12 @@ async function getAllApplicant() {
       }
       return data;
     });
-    console.log(data);
+    // console.log(data);
     await connection.close();
     return data;
     
   } catch (error) {
+    data = 'error'
     throw error;
   }
 };

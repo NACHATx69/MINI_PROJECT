@@ -48,12 +48,12 @@ const newEmployeeData = {
     HIREDATE: null,
   };
 //------------------------------------ทดสอบรันโค้ด
-  creatUser(newEmployeeData)
-  .then(result => {
-    console.log('Data inserted successfully:', result);
-  })
-  .catch(error => {
-    console.error('Error inserting data:', error);
-  });
+  // creatUser(newEmployeeData)
+  // .then(result => {
+  //   console.log('Data inserted successfully:', result);
+  // })
+  // .catch(error => {
+  //   console.error('Error inserting data:', error);
+  // });
 
 module.exports = { creatUser };

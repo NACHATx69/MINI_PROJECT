@@ -6,28 +6,33 @@ const jsonparser = bodyParser.json()
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var addUserRouter = require("./routes/addUser");
-var usersRouter = require("./routes/users");
-var pages_contactRouter = require("./routes/page_contract");
-var pages_blankRouter = require("./routes/page-blank");
-var loginRouter = require("./routes/login");
-var profileRouter = require("./routes/profile");
-var registerRouter = require("./routes/register");
-var faqRouter = require("./routes/faq");
-var board_postRouter = require("./routes/board_post");
-var careerRouter = require("./routes/career");
-var careerDetailRouter = require("./routes/detail_career");
-var jobDetailRouter = require("./routes/detail_job");
-var applicationRouter = require("./routes/application");
-var createJobDesRouter = require("./routes/createJobDescription");
-var jobListRouter = require("./routes/jobList");
-var authenRouter = require("./routes/auth");
-var detailApplicantRouter = require("./routes/detail_applicant");
+var board_postRouter = require("./routes/home");
+
+var addUserRouter = require("./routes/page-registerCreateUser");
+var loginRouter = require("./routes/page-login");
+var registerRouter = require("./routes/page-register");
+var authenRouter = require("./routes/page-login_auth");
+var singoutRouter = require("./routes/page-singout");
+var roletRouter = require("./routes/page-role");
+
+var careerRouter = require("./routes/career_posted");
+var careerDetailRouter = require("./routes/career_postedDetail");
+var createJobDesRouter = require("./routes/career-createPost");
+var createRequestRouter = require("./routes/career-requrestList");
+
+var applicationRouter = require("./routes/applicant-application");
+var applicantProfileRouter = require("./routes/applicant-profile");
+var applicantInterviewRouter = require("./routes/applicant-interviewList");
+var applicantInterviewResultRouter = require("./routes/applicant-interviewResult");
+
+var reportApplicantRouter = require("./routes/report_applicant");
+var reportEmployeeRouter = require("./routes/report_emp");
 
 var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
+app.set("public", path.join(__dirname, "public"));
 app.set("view engine", "ejs");
 
 app.use(logger("dev"));
@@ -37,28 +42,35 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", board_postRouter);
-app.use("/users", usersRouter);
-app.use("/faq", pages_contactRouter);
-app.use("/contact", pages_contactRouter);
-app.use("/pages-blank", pages_blankRouter);
 app.use("/login",loginRouter);
-app.use("/profile",profileRouter);
 app.use("/register",registerRouter);
 app.post("/welcome",addUserRouter);
+app.use("/authen",authenRouter)
+app.use("/singout",singoutRouter)
+app.use("/role",roletRouter)
+app.use("/dataManage",roletRouter)
+
 app.use("/career",careerRouter);
+app.use("/career_request",createRequestRouter);
+app.use("/career_request",createRequestRouter);
 app.use("/career_detail",careerDetailRouter);
+
 app.use("/application",applicationRouter)
 app.use("/createJobDescription",createJobDesRouter)
-app.use("/jobList",jobListRouter)
-app.use("/jobDetail",jobDetailRouter)
-app.use("/login",jobDetailRouter)
-app.use("/authen",authenRouter)
-app.use("/applicant",detailApplicantRouter)
+app.use("/applicant-profile",applicantProfileRouter)
+app.use("/applicant-interviewList",applicantInterviewRouter)
+app.use("/applicant-interviewResult",applicantInterviewResultRouter)
+
+app.use("/report-applicant",reportApplicantRouter)
+app.use("/report-employee",reportEmployeeRouter)
 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+  const post ={
+    content: '../pages/page-error404',
+  }
+  res.status(404).render('layouts/base-login', { post: post });
 });
 
 // error handler
