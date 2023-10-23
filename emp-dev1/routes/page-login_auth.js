@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var jwt = require("jsonwebtoken");
+var crypto = require('crypto');
 const key = require('../authen/key.json')
 
 const fs = require('fs');
