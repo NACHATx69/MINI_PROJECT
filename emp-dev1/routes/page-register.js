@@ -31,10 +31,6 @@ router.get("/", async function (req, res, next) {
       const jsonData_pos = JSON.stringify(sql_pos);
       const dataPossition = JSON.parse(jsonData_pos);
 
-      const sql_role = await  getRole();
-      const jsonData_role = JSON.stringify(sql_role);
-      const dataRole = JSON.parse(jsonData_role);
-
       const sql_mgr = await  mgr_name();
       const jsonData_mgr = JSON.stringify(sql_mgr);
       const dataMgr = JSON.parse(jsonData_mgr);
@@ -47,7 +43,6 @@ router.get("/", async function (req, res, next) {
         title: 'สร้างบัญชีผู้ใช้',
         content: '../pages/page-register',
         posittion: dataPossition,
-        role: dataRole,
         empID: userCount,
         mgr: sql_mgr,
         create: createParam,
@@ -63,11 +58,8 @@ router.get("/", async function (req, res, next) {
       const post ={
         title: 'ไม่สามารถเข้าสู่ระบบได้',
         content: '../pages/page-error404',
-        username: usernameProfile
       }
       res.render('layouts/base', { post: post });
-      // return res.json({ error: 'invalid token' })
-			// return res.status(401).end()
 		}
 	}
 

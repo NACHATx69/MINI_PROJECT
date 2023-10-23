@@ -43,7 +43,6 @@ const newEmployeeData = {
     DEPARTMENT: 'd05',
     POSITIONS: 'p01',
     MGR_ID: 'e003',
-    USERNAME: 'johndoe',
     PASS: 'password123',
     HIREDATE: null,
   };

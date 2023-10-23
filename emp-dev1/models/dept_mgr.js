@@ -26,6 +26,6 @@ async function mgr_name() {
   }
 };
 
-mgr_name()
+// mgr_name()
 
 module.exports = { mgr_name };

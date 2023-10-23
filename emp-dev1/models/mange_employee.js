@@ -1,10 +1,10 @@
 const { connectToDatabase } = require("../config/db");
 
-async function getUserData() {
+async function getEMPLOYEE() {
   try {
     const connection = await connectToDatabase();
     // ทำตามคำสั่ง SQL ที่ต้องการ
-    const query = "SELECT * FROM employee";
+    const query = "SELECT * FROM EMPLOYEE";
     const result = await connection.execute(query);
 
     //json file
@@ -14,18 +14,14 @@ async function getUserData() {
         data[result.metaData[i].name] = row[i];
       }
       return data;
-      
     });
-
-    console.log(data)
-
+    console.log(data);
     await connection.close();
     return data;
+    
   } catch (error) {
     throw error;
   }
 };
-
-getUserData()
-
-module.exports = { getUserData };
+// getPosittion()
+module.exports = { getEMPLOYEE };

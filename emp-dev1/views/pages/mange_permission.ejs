@@ -1,0 +1,261 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.6.0/css/searchBuilder.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.5.1/css/dataTables.dateTime.min.css" />
+
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1000;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  form p {
+    font-size: 15px;
+    /* ปรับขนาดตัวอักษรตามที่ต้องการ */
+  }
+
+  #namepo {
+    font-size: 22px;
+  }
+</style>
+<div class="container">
+  <div class="card-body min-vh-100">
+    <div class="py-2 text-center">
+    </div>
+
+    <h2 class="border-bottom pb-2">จัดการสิทธิ์การใช้งานของเเต่ละตำเเหน่ง</h2>
+
+    <section class="py-5 text-center container">
+
+      <div class="col-12">
+        <table id="example" class="display nowrap" style="width:100%">
+          <thead>
+            <tr>
+              <th>ตำเเหน่ง</th>
+              <th>สร้างประกาศพนักงาน</th>
+              <th>อนุมัติขอสร้างประกาศ</th>
+              <th>โพสประกาศสมัครงาน</th>
+              <th>คัดเลือกบุคคล</th>
+              <th>รายงานสรุป</th>
+              <th>หน้าจัดการสิทธิ์</th>
+              <th>เเก้ไข</th>
+              <th></th>
+              
+
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0; i < data.length; i++) { %>
+            <tr>
+              <td><%= data[i].POS_NAME  %> </td>
+
+              <% if (data[i].CREATE_REQ == 0) { %>
+              <td class="text-center"><i class="fa-solid fa-xmark" style="color: #f01919;"></i></td>
+              <% } else if (data[i].CREATE_REQ == 1) { %>
+              <td class="text-center"><i class="fa-solid fa-check" style="color: #0a9421;"></i></td>
+              <% } %>
+
+
+              <% if (data[i].APPROVE_CREATE_REQ == 0) { %>
+              <td class="text-center"><i class="fa-solid fa-xmark" style="color: #f01919;"></i></td>
+              <% } else if (data[i].APPROVE_CREATE_REQ == 1) { %>
+              <td class="text-center"><i class="fa-solid fa-check" style="color: #0a9421;"></i></td>
+              <% } %>
+
+
+              <% if (data[i].POST_REQ == 0) { %>
+              <td class="text-center"><i class="fa-solid fa-xmark" style="color: #f01919;"></i></td>
+              <% } else if (data[i].POST_REQ == 1) { %>
+              <td class="text-center"><i class="fa-solid fa-check" style="color: #0a9421;"></i></td>
+              <% } %>
+
+
+              <% if (data[i].APPL_SELECT == 0) { %>
+              <td class="text-center"><i class="fa-solid fa-xmark" style="color: #f01919;"></i></td>
+              <% } else if (data[i].APPL_SELECT == 1) { %>
+              <td class="text-center"><i class="fa-solid fa-check" style="color: #0a9421;"></i></td>
+              <% } %>
+
+
+              <% if (data[i].SUM_REPORT == 0) { %>
+              <td class="text-center"><i class="fa-solid fa-xmark" style="color: #f01919;"></i></td>
+              <% } else if (data[i].SUM_REPORT == 1) { %>
+              <td class="text-center"><i class="fa-solid fa-check" style="color: #0a9421;"></i></td>
+              <% } %>
+
+
+
+              <% if (data[i].MANAGE_PER == 0) { %>
+              <td class="text-center"><i class="fa-solid fa-xmark" style="color: #f01919;"></i></td>
+              <% } else if (data[i].MANAGE_PER == 1) { %>
+              <td class="text-center"><i class="fa-solid fa-check" style="color: #0a9421;"></i></td>
+              <% } %>
+                
+              <td  style="display: none;"><%=data[i].POS_ID%> </td> 
+
+              <td><button id="myBtn" type="button" class="btn btn-warning">Edit</button></td>
+              
+
+            </tr>
+            <% } %>
+        </table>
+      </div>
+
+      <div class="col-12">
+        <div id="editdata" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <form action="/mange_permission" method="POST">
+              <h3>Position </h3>
+              <p id="namepo" name="ID_NAME"><%= data[0].POS_NAME  %></p>
+              <input type="hidden" id="idpo" name="ID_POS">
+      
+              <p><input type="checkbox" id="ch1" name="CREATE_REQ"> สร้างประกาศพนักงาน</p>
+              <p><input type="checkbox" id="ch2" name="APPROVE_CREATE_REQ"> อนุมัติขอสร้างประกาศ</p>
+              <p><input type="checkbox" id="ch3" name="POST_REQ"> โพสประกาศสมัครงาน</p>
+              <p><input type="checkbox" id="ch4" name="APPL_SELECT"> คัดเลือกบุคคล</p>
+              <p><input type="checkbox" id="ch5" name="SUM_REPORT"> รายงานสรุป</p>
+              <p><input type="checkbox" id="ch6" name="MANAGE_PER"> หน้าจัดการสิทธิ์</p>
+              <button id="mysubmit" type="submit" class="btn btn-success">ยืนยัน</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/searchbuilder/1.6.0/js/dataTables.searchBuilder.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.5.1/js/dataTables.dateTime.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable({
+      searching: true,
+      paging: false,
+      info: false,
+      ordering: false
+    });
+
+  });
+</script>
+
+<script>
+  var modal = document.getElementById("editdata");
+  var btns = document.getElementsByClassName("btn btn-warning");
+
+  var span = document.getElementsByClassName("close")[0];
+
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].onclick = function() {
+      modal.style.display = "block";
+      var namepoElement = this.parentElement.parentElement.getElementsByTagName("td")[0];
+      var namepo = namepoElement.innerText;
+      document.getElementById("namepo").innerText = namepo;
+
+
+      var createReqElement = this.parentElement.parentElement.getElementsByTagName("td")[1];
+      var createReq = createReqElement.getElementsByTagName("i")[0].classList.contains('fa-check');
+      document.getElementById("ch1").checked = createReq;
+
+      var approveCreateReqElement = this.parentElement.parentElement.getElementsByTagName("td")[2];
+      var approveCreateReq = approveCreateReqElement.getElementsByTagName("i")[0].classList.contains('fa-check');
+      document.getElementById("ch2").checked = approveCreateReq;
+
+      var postReqElement = this.parentElement.parentElement.getElementsByTagName("td")[3];
+      var postReq = postReqElement.getElementsByTagName("i")[0].classList.contains('fa-check');
+      document.getElementById("ch3").checked = postReq;
+
+      var applSelectElement = this.parentElement.parentElement.getElementsByTagName("td")[4];
+      var applSelect = applSelectElement.getElementsByTagName("i")[0].classList.contains('fa-check');
+      document.getElementById("ch4").checked = applSelect;
+
+      var sumReportElement = this.parentElement.parentElement.getElementsByTagName("td")[5];
+      var sumReport = sumReportElement.getElementsByTagName("i")[0].classList.contains('fa-check');
+      document.getElementById("ch5").checked = sumReport;
+
+      var managePerElement = this.parentElement.parentElement.getElementsByTagName("td")[6];
+      var managePer = managePerElement.getElementsByTagName("i")[0].classList.contains('fa-check');
+      document.getElementById("ch6").checked = managePer;
+
+      var idpoElement = this.parentElement.parentElement.getElementsByTagName("td")[7];
+      var idpo = idpoElement.innerText;
+      document.getElementById("idpo").value = idpo;
+    }
+  }
+
+  $("#mysubmit").click(function(event) {
+      var confirmation = confirm("ยืนยันการเเก้ไข");
+      if (!confirmation) {
+        event.preventDefault();
+      }
+    });
+
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>

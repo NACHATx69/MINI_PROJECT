@@ -1,4 +1,3 @@
-const { json } = require('body-parser');
 var express = require('express');
 var router = express.Router();
 const { creatUser } = require("../models/addUser.js");
@@ -28,19 +27,12 @@ router.post('/welcome', function(req, res, next) {
     const userData = JSON.stringify(payloadForm);
     const data = JSON.parse(userData);
 
-    const post ={
-      title: 'บอร์ประกาศ',
-      content: '../pages/board_post',
-      username: usernameProfile
-    }
-
     const newEmployeeData = {
       EMP_ID: data.EMP_ID,
       FNAME: data.FNAME,
       LNAME: data.LNAME,
       DEPARTMENT: data.DEPARTMENT,
       POSITIONS: data.POSITIONS,
-      // PERMISTION: data.PERMISTION,
       MGR_ID: data.MGR_ID,
       PASS: data.PASS,
       HIREDATE: new Date(data.HIREDATE),
@@ -50,8 +42,7 @@ router.post('/welcome', function(req, res, next) {
   
     creatUser(newEmployeeData)
     .then(result => {
-      console.log('Data inserted successfully:', result);
-      res.redirect('/register?create=success');
+      res.redirect(`/register?create=success&id=${newEmployeeData.EMP_ID}&name=${newEmployeeData.FNAME}&lname=${newEmployeeData.LNAME}`);
     })
     .catch(error => {
       console.error('Error inserting data:', error);
