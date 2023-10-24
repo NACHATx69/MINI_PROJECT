@@ -1,15 +1,145 @@
 <div class="container">
-  <div class="card-body min-vh-100">
-    <div class="py-2 text-center">
+  <div class="card-body">
+    <div class="py-2 text-end">
     </div>
 
-    <h2 class="border-bottom pb-2">หน้าว่าง</h2>
-
-    <section class="py-5 text-center container">
-
-      <div class="col-12">
-        
+    <!-- Alert -->
+    <% if (post.create === 'success') { %>
+      <div class="row justify-content-end">
+        <div class="alert alert-success text-center" id="alert-result" style="width: auto; display: flex; position: fixed;" >
+          การสร้างสำเร็จ : เลขที่ประกาศ <%= post.genIDapp %> <button class="btn btn-sm p-0 ms-4"  id="close-alert">X</button>
+        </div>
       </div>
-    </section>
+    <% } else if (post.create === 'fail') { %>
+      <div class="row justify-content-end">
+        <div class="alert alert-danger text-center" id="alert-result" style="width: auto; display: flex; position: fixed;">
+          การสร้างไม่สำเร็จ <button class="btn btn-sm p-0 ms-4"  id="close-alert">X</button>
+        </div>
+      </div>
+    <% } %>    
+
+    <script>
+      btn_close_alert = document.getElementById("close-alert");
+      btn_close_alert.addEventListener("click", function () {
+        document.getElementById("alert-result").style.display = "none";
+      });
+    </script>
+    
+
+    <div class="row g-5 justify-content-center">
+      <div class="col-md-12">
+        <h2 class="border-bottom pb-2">สร้างประกาศรับสมัครงาน</h2>
+      
+        <form class="needs-validation mt-5" validate action="/requestEmp" method="post">
+
+          <div class="row g-3">
+            <div class="col-md-4">
+
+              <div class="row g-3" style="display: none;">
+                <!-- ID APPLICATION -->
+                <input type="text" class="form-control" id="REQ_LIST_ID" name="REQ_LIST_ID" value="<%= post.genIDapp %>" required readonly>
+              </div>
+
+              <label for="DEPARTMENT" class="form-label">แผนก</label>
+              <select class="form-select" id="JOB" name="JOB" required>
+                <option value="" selected>ระบุ....</option> 
+                <% post.dept.forEach(dept => { %>
+                  <option value="<%= dept.DEPT_ID %>"><%= dept.DEPT_NAME %></option>
+                <% }); %>
+              </select>
+              <div class="invalid-feedback">
+                กรอกแผนก
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="POSITIONS" class="form-label">ตำแหน่ง</label>
+              <select class="form-select" id="JOB_POSITTION" name="JOB_POSITTION" required>
+                  <option value="" selected>ระบุ....</option> 
+                  <% post.posittion.forEach(possit => { %>
+                    <option value="<%= possit.POS_ID %>"><%= possit.POS_NAME %></option>
+                  <% }); %>
+                </select>
+              </select>
+              <div class="invalid-feedback">
+                กรอกตำแหน่งงาน
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-md-4">
+              <label for="DEPARTMENT" class="form-label">การศึกษา</label>
+              <select class="form-select" id="EDUCATION" name="EDUCATION" required>
+                <option value="" selected>ระบุ....</option> 
+                <% post.study.forEach(level => { %>
+                  <option value="<%= level.ID %>"><%= level.STUDY %></option>
+                <% }); %>
+              </select>
+              <div class="invalid-feedback">
+                กรอกการศึกษา
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="POSITIONS" class="form-label">ความถนัด</label>
+              <select class="form-select" id="SKILL_EX" name="SKILL_EX" required>
+                  <option value="" selected>ระบุ....</option> 
+                  <% post.skill.forEach(skill => { %>
+                    <option value="<%= skill.ID %>"><%= skill.SKILL %></option>
+                  <% }); %>
+                </select>
+              </select>
+              <div class="invalid-feedback">
+                กรอกความถนัด
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-md-8 mb-3">
+              <label for="detail" class="form-label">รายละเอียดงาน</label>
+              <textarea class="form-control" id="DETAIL" name="DETAIL" rows="3" required></textarea>
+              <div class="invalid-feedback">
+                กรอกรายละเอียดงาน
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row g-3 mt-2">
+            <div class="col-md-3">
+              <label for="exp" class="form-label">ประสบการณ์ทำงาน</label>
+              <input type="text" class="form-control" id="EXPERIENCE"name="EXPERIENCE" required>
+            </div>
+            <div class="invalid-feedback">
+              กรอกประสบการณ์ทำงาน
+            </div>
+          </div>
+
+          <div class="row g-3 mt-2">
+            <div class="col-md-3">
+              <label for="salary" class="form-label">เงินเดือน/เดือน</label>
+              <input type="number" class="form-control" id="SALARY"name="SALARY" required>
+            </div>
+            <div class="invalid-feedback">
+              กรอกเงินเดือน
+            </div>
+          </div>
+          
+          <hr class="my-4">
+          
+          <div class="row justify-content-end" >
+            <div class="col-auto">
+              <button class="btn btn-primary btn-lg mt-4 w-150" type="submit">สร้าง</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="height: 100vh;">
+
   </div>
 </div>

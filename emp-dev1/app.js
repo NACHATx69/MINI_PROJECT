@@ -22,6 +22,7 @@ var careerRouter = require("./routes/career_posted");
 var careerDetailRouter = require("./routes/career_postedDetail");
 var createJobDesRouter = require("./routes/career-createPost");
 var createRequestRouter = require("./routes/career-requrestList");
+var creatSaveToSqltRouter = require("./routes/career-createPostToSql");
 
 var applicationRouter = require("./routes/applicant-application");
 var applicantProfileRouter = require("./routes/applicant-profile");
@@ -56,14 +57,12 @@ app.use("/role",roletRouter)
 
 app.use("/career",careerRouter);
 app.use("/career_request",createRequestRouter);
-app.use("/career_request",createRequestRouter);
-app.use("/career_request",createRequestRouter);
-app.use("/career_request",createRequestRouter);
 app.use("/career_detail",careerDetailRouter);
+app.use("/createJobDescription",createJobDesRouter)
+app.post("/requestEmp",creatSaveToSqltRouter)
 
 
 app.use("/application",applicationRouter)
-app.use("/createJobDescription",createJobDesRouter)
 app.use("/applicant-profile",applicantProfileRouter)
 app.use("/applicant-interviewList",applicantInterviewRouter)
 app.use("/applicant-interviewResult",applicantInterviewResultRouter)

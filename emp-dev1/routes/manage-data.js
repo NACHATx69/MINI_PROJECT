@@ -35,8 +35,6 @@ router.get('/', function(req, res, next) {
         username: usernameProfile
       }
       res.render('layouts/base', { post: post });
-      // return res.json({ error: 'invalid token' })
-			// return res.status(401).end()
 		}
 	}
   

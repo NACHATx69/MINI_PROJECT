@@ -35,7 +35,8 @@ router.post('/',async  function(req, res, next) {
             //                   secret:userEmp,
             //               });
         }else {
-            res.send('login: failed');
+
+            res.redirect(`/login?authen=failed&user=${user}`);
         }
     }).catch((error) => {
           console.error('Error:', error);

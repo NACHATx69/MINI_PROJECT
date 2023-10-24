@@ -13,12 +13,12 @@
               <p class="text-center small">Enter your id & password to login</p>
             </div>
 
-            <form class="row g-3 needs-validation" novalidate action="/authen" method="post">
+            <form class="row g-3 needs-validation" validate action="/authen" method="post">
 
               <div class="col-12">
                 <label for="yourUsername" class="form-label">ID</label>
                 <div class="input-group has-validation">
-                  <input type="text" name="username" class="form-control" id="yourUsername" required>
+                  <input type="text" name="username" class="form-control" id="yourUsername" value="<%= post.user %>" required>
                   <div class="invalid-feedback">Please enter your username.</div>
                 </div>
               </div>
@@ -27,7 +27,16 @@
                 <label for="yourPassword" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" id="yourPassword" required>
                 <div class="invalid-feedback">Please enter your password!</div>
-              </div>
+              </div>  
+
+              <!-- Alert -->
+              <% if (post.authen === 'failed') { %>
+                <div class="row justify-content-end mt-3">
+                  <p class="text-danger" id="login-failed" style="display: none;">
+                    ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง
+                  </p>
+                </div>
+              <% } %>    
 
               <div class="row justify-content-center">
                 <div class="col-6 mt-4"> 
@@ -53,3 +62,14 @@
   </div>
 
 </section>
+
+
+<script>
+  const loginFailedMessage = document.getElementById("login-failed");
+
+  if ("<%= post.authen %>" === "failed") {
+    loginFailedMessage.style.display = "block";
+  } else {
+    loginFailedMessage.style.display = "none"; 
+  }
+</script>
