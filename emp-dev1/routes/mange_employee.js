@@ -3,22 +3,54 @@ var router = express.Router();
 const { getEMPLOYEE } = require("../models/mange_employee.js");
 const { updatePosition } = require("../models/mange_permission.js");
 
-router.get("/", async function (req, res, next) {
-  try {
-    const employeeData = await getEMPLOYEE(); 
+var jwt = require("jsonwebtoken");
+const key = require('../authen/key.json');
 
-        const post ={
-          title: 'จัดการข้อมูลพนักงาน',
-          content: '../pages/mange_employee',
-        
-        }
-        console.log("getEMPLOYEE" , employeeData)
-      res.render('layouts/base',{post:post,data:employeeData});
-  } catch (error) {
-    console.error("mange_employee error: ", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+router.get('/',async function(req, res, next) {
+  var token = req.cookies.token
+  var usernameProfile = req.cookies.user
+  var secret = JSON.stringify(key.key);
+  
+  if (!token) {
+		// return res.status(401).end()
+    const post ={
+      title: 'จัดการข้อมูลพนักงาน',
+      content: '../pages/page-error404',
+    }
+    res.render('layouts/base-auth', { post: post });
+	}
+
+  var payload
+	try {
+		payload = jwt.verify(token, secret)
+
+    try {
+      const employeeData = await getEMPLOYEE(); 
+  
+          const post ={
+            title: 'จัดการข้อมูลพนักงาน',
+            content: '../pages/mange_employee',
+            username: usernameProfile
+          }
+          console.log("getEMPLOYEE" , employeeData)
+        res.render('layouts/base',{post:post,data:employeeData});
+    } catch (error) {
+      console.error("mange_employee error: ", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+	} catch (e) {
+		if (e instanceof jwt.JsonWebTokenError) {
+      const post ={
+        title: 'จัดการข้อมูลพนักงาน',
+        content: '../pages/page-error404',
+        username: usernameProfile
+      }
+      res.render('layouts/base', { post: post });
+		}
+	}
+  
 });
+
 
 router.post("/", async function (req, res, next) {
   try {
@@ -51,47 +83,5 @@ router.post("/", async function (req, res, next) {
 
 module.exports = router;
 
-// -----------------------------------------------------------------------------------
-var express = require('express');
-var router = express.Router();
 
-var jwt = require("jsonwebtoken");
-const key = require('../authen/key.json');
 
-router.get('/', function(req, res, next) {
-  var token = req.cookies.token
-  var usernameProfile = req.cookies.user
-  var secret = JSON.stringify(key.key);
-  
-  if (!token) {
-		// return res.status(401).end()
-    const post ={
-      content: '../pages/page-error404',
-    }
-    res.render('layouts/base-auth', { post: post });
-	}
-
-  var payload
-	try {
-		payload = jwt.verify(token, secret)
-    const post ={
-      title: 'คำร้องขอกำลังคน',
-      content: '../pages/career-requrestList',
-      username: usernameProfile
-    }
-    // res.send(payload)
-    res.render('layouts/base', { post: post });
-	} catch (e) {
-		if (e instanceof jwt.JsonWebTokenError) {
-      const post ={
-        title: 'ประกาศรับสมัครงาน',
-        content: '../pages/page-error404',
-        username: usernameProfile
-      }
-      res.render('layouts/base', { post: post });
-		}
-	}
-  
-});
-
-module.exports = router;

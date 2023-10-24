@@ -3,22 +3,10 @@ var router = express.Router();
 const { getPosittion } = require("../models/posittion.js");
 const { updatePosition } = require("../models/mange_permission.js");
 
-router.get("/", async function (req, res, next) {
-  try {
-    const positionData = await getPosittion(); 
+var jwt = require("jsonwebtoken");
+const key = require('../authen/key.json');
 
-        const post ={
-          title: 'จัดการสิทธิ์การใช้งานของเเต่ละตำเเหน่ง',
-          content: '../pages/mange_permission',
-        
-        }
-        console.log("getPosittion" , positionData)
-      res.render('layouts/base',{post:post,data:positionData});
-  } catch (error) {
-    console.error("mange_permission error: ", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+
 
 router.post("/", async function (req, res, next) {
   try {
@@ -50,3 +38,47 @@ router.post("/", async function (req, res, next) {
 
 
 module.exports = router;
+// --------------------------------------
+router.get('/',async function(req, res, next) {
+  var token = req.cookies.token
+  var usernameProfile = req.cookies.user
+  var secret = JSON.stringify(key.key);
+  
+  if (!token) {
+		// return res.status(401).end()
+    const post ={
+      content: '../pages/page-error404',
+    }
+    res.render('layouts/base-auth', { post: post });
+	}
+
+  var payload
+	try {
+		payload = jwt.verify(token, secret)
+
+    try {
+      const positionData = await getPosittion(); 
+  
+          const post ={
+            title: 'จัดการสิทธิ์การใช้งานของเเต่ละตำเเหน่ง',
+            content: '../pages/mange_permission',
+            username: usernameProfile
+          }
+          console.log("getPosittion" , positionData)
+        res.render('layouts/base',{post:post,data:positionData});
+    } catch (error) {
+      console.error("mange_permission error: ", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+	} catch (e) {
+		if (e instanceof jwt.JsonWebTokenError) {
+      const post ={
+        title: 'ประกาศรับสมัครงาน',
+        content: '../pages/page-error404',
+        username: usernameProfile
+      }
+      res.render('layouts/base', { post: post });
+		}
+	}
+  
+});

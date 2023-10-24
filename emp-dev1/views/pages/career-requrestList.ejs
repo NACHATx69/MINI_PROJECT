@@ -70,6 +70,7 @@
   #namepo {
     font-size: 22px;
   }
+
 </style>
 
 <div class="container">
@@ -77,42 +78,43 @@
     <div class="py-2 text-center">
     </div>
 
-    <h2 class="border-bottom pb-2">จัดการข้อมูลพนักงาน</h2>
+    <h2 class="border-bottom pb-2">คำขอสร้างประกาศสมัครงาน</h2>  <!-- ชื่อหัวข้อ -->
 
     <section class="py-5 text-center container">
 
       <div class="col-12">
         <table id="example" class="display nowrap" style="width:100%">
-          <thead>
+          <thead> <!-- หัวตาราง -->
             <tr>
-              <th>ไอดี</th>
-              <th>ชื่อ</th>
-              <th>นามสกุล</th>
-              <th>เเผนก</th>
-              <th>ตำเเหน่ง</th>
-              <th>สถานะ</th>
-              <th>เเก้ไข</th>
-              <th>รหัสผ่าน</th>
+              <th class="text-center">รหัส</th>
+              <th class="text-center">แผนก</th>
+              <th class="text-center">ตำแหน่ง</th>
+              <th class="text-center">รายละเอียด</th>
+              <th class="text-center">ผู้ขอ</th>
+              <th class="text-center">สถานะ</th>
+              <th class="text-center"></th>
               
             </tr>
           </thead>
-          <tbody>
+          <tbody> <!--  ข้อมูลในตาราง-->
             <% for(var i=0; i < data.length; i++) { %>
             <tr>
-              <td><%= data[i].EMP_ID  %> </td>
-              <td><%= data[i].FNAME %> </td>
-              <td><%= data[i].LNAME %> </td>
-              <td><%= data[i].DEPARTMENT %> </td>
-              <td><%= data[i].POSITIONS %> </td>
-
-              <% if (data[i].STATUS == 0) { %>
-                <td>ลาออกเเเล้ว</td>
+              <td><%= data[i].REQ_LIST_ID  %> </td> <!--แก้ไขที่ REQ_LIST_ID  เปลี่ยนเป็นชื่อคอลัมที่เราคิวรี่ได้ ซึ่งREQ_LIST_ID ก็เป็นข้อมู,ที่เราเก็บไปใน report ตอนทำเร้าท์-->
+              <td><%= data[i].DEPT_NAME %> </td>
+              <td><%= data[i].POS_NAME %> </td>
+              <td><%= data[i].DETAIL %> </td>
+              <td><%= data[i].FNAME %> <%= data[i].LNAME %> </td>
+              <% if (data[i].STATUS === null) { %>
+                <td>รออนุมัติ</td>
                 <% } else if (data[i].STATUS == 1) { %>
                 <td>ทำงานอยู่</i></td>
-                <% } %>
+              <% } %>
      
-              <td><button id="myBtn" type="button" class="btn btn-warning">Edit</button></td>
-              <td><button id="myresetP" type="button" class="btn btn-info">Reset</button></td>
+              <td>  
+                <a href="/career?applicantId=<%= data[i].REQ_LIST_ID %>">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </td>
             </tr>
             <% } %>
         </table>
@@ -138,7 +140,7 @@
   });
 </script>
 
-<script>
+<!-- <script>
   var modal = document.getElementById("editdata");
   var btns = document.getElementsByClassName("btn btn-warning");
 
@@ -170,4 +172,4 @@
       modal.style.display = "none";
     }
   }
-</script>
+</script> -->

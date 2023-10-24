@@ -1,12 +1,12 @@
 const { connectToDatabase } = require("../config/db");
 const oracledb = require("oracledb");
 
-async function career_add(newINTER_Data) {
+async function career_add(agm) {
   try {
     const connection = await connectToDatabase();
     const sql = `
-    INSERT INTO REQ_LIST (REQ_LIST_ID, SKILL_EX, SALARY, DETAIL, STUDY, EXP, JOB, JOB_POSITTION)
-    VALUES (:REQ_LIST_ID, :SKILL_EX, :SALARY, :DETAIL, :STUDY, :EXP, :JOB, :JOB_POSITTION)`;
+    INSERT INTO REQ_LIST (REQ_LIST_ID, SKILL_EX, SALARY, DETAIL, STUDY, EXP, JOB, JOB_POSITTION, REQ_BY)
+    VALUES (:REQ_LIST_ID, :SKILL_EX, :SALARY, :DETAIL, :STUDY, :EXP, :JOB, :JOB_POSITTION, :REQ_BY)`;
 
     const options = {
       autoCommit: true,
@@ -19,9 +19,10 @@ async function career_add(newINTER_Data) {
         EXP: { type: oracledb.STRING },
         JOB: { type: oracledb.STRING },
         JOB_POSITTION: { type: oracledb.STRING },
+        REQ_BY: { type: oracledb.STRING },
       },
     };
-    const result = await connection.execute(sql, newINTER_Data, options);
+    const result = await connection.execute(sql, agm, options);
     await connection.close();
     return result;
   } catch (error) {

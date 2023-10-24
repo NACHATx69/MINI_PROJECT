@@ -9,6 +9,7 @@ const key = require('../authen/key.json');
 router.post('/requestEmp', function(req, res, next) {
   var token = req.cookies.token
   var usernameProfile = req.cookies.user
+  var emp_id = req.cookies.ID
   var secret = JSON.stringify(key.key);
   
   if (!token) {
@@ -36,6 +37,7 @@ router.post('/requestEmp', function(req, res, next) {
       EXP: data.EXPERIENCE,
       JOB: data.JOB,
       JOB_POSITTION: data.JOB_POSITTION,
+      REQ_BY:emp_id
     };
   
     console.log(applicant);
