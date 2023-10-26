@@ -49,31 +49,31 @@ async function applicant_add(agm) {
   }
 }
 
-// const newApplicantData = {
-//   APPL_ID: 'A25661025004',
-//   REQUEST_ID: 'C25661025008',
-//   FNAME: 'John',
-//   LNAME: 'Doe',
-//   EMAIL: 'johndoe@example.com',
-//   TELL: '1234567890',
-//   SALARY: '50000',
-//   ADDRESS: '123 Main St, City',
-//   SKILL_EX1: 's001',
-//   SKILL_EX2: 's001',
-//   SKILL_EX3: 's001',
-//   SKILL_EX4: 's001',
-//   EXP: '2 years',
-//   STUDY: '1',
-//   LINK_FOLIO: 'https://example.com',
-//   DATE_FORM: '',
-// };
+const newApplicantData = {
+  APPL_ID: 'A25661025005',
+  REQUEST_ID: 'C25661025008',
+  FNAME: 'John',
+  LNAME: 'Doe',
+  EMAIL: 'johndoe@example.com',
+  TELL: '1234567890',
+  SALARY: '50000',
+  ADDRESS: '123 Main St, City',
+  SKILL_EX1: 's001',
+  SKILL_EX2: 's001',
+  SKILL_EX3: 's001',
+  SKILL_EX4: 's001',
+  EXP: '2 years',
+  STUDY: '1',
+  LINK_FOLIO: 'https://example.com',
+  DATE_FORM: '',
+};
 
-// applicant_add(newApplicantData)
-//   .then((result) => {
-//     console.log("Data inserted successfully:", result);
-//   })
-//   .catch((error) => {
-//     console.error("Error inserting data:", error);
-//   });
+applicant_add(newApplicantData)
+  .then((result) => {
+    console.log("Data inserted successfully:", result);
+  })
+  .catch((error) => {
+    console.error("Error inserting data:", error);
+  });
 
 module.exports = { applicant_add };

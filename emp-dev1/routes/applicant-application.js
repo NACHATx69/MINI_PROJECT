@@ -13,11 +13,10 @@ const {applicant_add} =require('../models/applican_senApp');
 router.get('/',async function(req, res, next) {
   var token = req.cookies.token
   var usernameProfile = req.cookies.user
-  var secret = JSON.stringify(key.key);
+  const REQUEST_ID = req.query.application;
+  const id = await genIDapplican();
   
   if (!token) {
-    const application = req.query.application;
-    const id = await genIDapplican();
     const JOB = req.query.JOB;
     const sql_skill = await  skill();
     const sql_study = await  study();
@@ -27,7 +26,7 @@ router.get('/',async function(req, res, next) {
     const post ={
       title: 'สมัครงาน',
       content: '../pages/applicant-application',
-      application:application,
+      application:REQUEST_ID,
       APPL_ID:id,
       JOB:JOB,
       skill: sql_skill,
@@ -36,39 +35,6 @@ router.get('/',async function(req, res, next) {
       username: usernameProfile,
     }
     res.render('layouts/base-auth', { post: post });
-	}
-
-  var payload
-	try {
-		payload = jwt.verify(token, secret)
-    const application = req.query.application;
-    const JOB = req.query.JOB;
-    const sql_skill = await  skill();
-    const sql_study = await  study();
-
-    const createParam = req.query.create;
-
-    const post ={
-      title: 'สมัครงาน',
-      content: '../pages/applicant-application',
-      application:application,
-      JOB:JOB,
-      skill: sql_skill,
-      study: sql_study,
-      create: createParam,
-      username: usernameProfile,
-    }
-    
-    res.render('layouts/base', { post: post });
-	} catch (e) {
-		if (e instanceof jwt.JsonWebTokenError) {
-      const post ={
-        title: 'บอร์ประกาศ',
-        content: '../pages/page-error404',
-        username: usernameProfile
-      }
-      res.render('layouts/base', { post: post });
-		}
 	}
   
 });
@@ -81,7 +47,7 @@ router.post('/application',async function(req, res, next) {
 
     const applicant = {
       APPL_ID: data.APPL_ID,
-      REQ_LIST_ID: data.REQ_LIST_ID,
+      REQUEST_ID: data.REQUEST_ID,
       FNAME: data.FNAME,
       LNAME: data.LNAME,
       EMAIL: data.EMAIL,
@@ -98,13 +64,17 @@ router.post('/application',async function(req, res, next) {
       DATE_FORM: new Date(data.DATE_FORM),
     };
 
+    
+    const APPL_ID = applicant.APPL_ID;
+    const REQUEST_ID = applicant.REQUEST_ID;
+
     applicant_add(applicant)
     .then(result => {
-      res.redirect(`/application?create=success&id=${applicant.REQ_APPL_IDLIST_ID}`);
+      res.redirect(`/application?application=${REQUEST_ID}&create=success&id=${APPL_ID}`);
     })
     .catch(error => {
       console.error('Error inserting data:', error);
-      res.redirect('/application?create=fail');
+      res.redirect(`/application?application=${REQUEST_ID}&create=fail`);
       
     });
   

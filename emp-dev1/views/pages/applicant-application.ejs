@@ -24,7 +24,7 @@
 
           setTimeout(function () {
             successAlert.classList.remove("show");
-          }, 5000); 
+          }, 10000); 
         }
       });
     </script>
@@ -37,11 +37,10 @@
             
             <div class="col-sm-12" style="display: none;">
               
-            </div>
-            <div class="col-sm-8" style="display: none;">
+            </div style="display: none;">
+            <div class="col-sm-8" >
               <input type="text" id="APPL_ID" NAME="APPL_ID" value="<%= post.APPL_ID%>" hidden>
-              <input type="text" id="REQ_LIST_ID" NAME="REQ_LIST_ID" value="<%= post.application%>" hidden>
-              <input type="text">
+              <input type="text" id="REQUEST_ID" NAME="REQUEST_ID" value="<%= post.application%>"hidden>
             </div>
 
             <div class="col-sm-9">

@@ -5,7 +5,7 @@ const currentDate = new Date();
 const currentYear = (Number(currentDate.getFullYear())+543).toString();
 const currentMonth = (currentDate.getMonth() + 1 < 10 ? '0' : '') + (currentDate.getMonth() + 1).toString();
 const currentDay = currentDate.getDate().toString().padStart(2, '0');
-const countId = 'C' +(currentYear+currentMonth+currentDay)
+const countId = 'A' +(currentYear+currentMonth+currentDay)
 
 async function genIDapplican() {
   try {
@@ -26,12 +26,12 @@ async function genIDapplican() {
   }
 };
 
-// genIDapp()
-//   .then(result => {
-//     console.log(result);
-//   })
-//   .catch(error => {
-//     console.error('Error inserting data:', error);
-//   })
+genIDapplican()
+  .then(result => {
+    console.log(result);
+  })
+  .catch(error => {
+    console.error('Error inserting data:', error);
+  })
 
 module.exports = { genIDapplican };
