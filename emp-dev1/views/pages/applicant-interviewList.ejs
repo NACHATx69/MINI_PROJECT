@@ -1,14 +1,85 @@
 <div class="container">
   <div class="card-body min-vh-100">
-    <div class="py-2 text-center">
-    </div>
-
-    <h2 class="border-bottom pb-2">หน้าว่าง</h2>
-
+    <div class="py-2 text-center"></div>
     <section class="py-5 text-center container">
-
       <div class="col-12">
-        
+        <div class="container">
+          <div class="card-body">
+            <div class="py-5 text-center"></div>
+            <h2 class="border-bottom pb-2">นัดสัมภาษณ์งาน</h2>
+            <section class="py-5 text-center container">
+              <div class="col-12">
+                <div style="text-align: left">
+                  <span>ผู้ใช้งาน :</span><span> <%=post.username %></span>
+                </div>
+                <table class="table table-borderless fixed_header" border="1">
+                  <thead>
+                    <tr>
+                      <th>เดือน/วัน/ปี : ช่วง</th>
+                      <th>เดือน/วัน/ปี : ช่วง</th>
+                      <th>ผู้สัมภาษณ์คนที่1</th>
+                      <th>ผู้สัมภาษณ์คนที่2</th>
+                      <th>ผู้สัมภาษณ์คนที่3</th>
+                      <th>รายละเอียด</th>
+                      <th>คอนเฟิร์มนัด</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% var index = 0; post.detail.forEach(detail_inter=> { const
+                    inputDate = detail_inter.DAY1ST ; const dateWithoutTime =
+                    new Date(inputDate).toLocaleDateString(); const inputDate2 =
+                    detail_inter.DAY2ND ; const dateWithoutTime2 = new
+                    Date(inputDate2).toLocaleDateString(); let t11 = 'เช้า'; let
+                    t22 = 'เช้า'; if (detail_inter.T1 === '1') { t11 = 'บ่าย'; }
+                    if (detail_inter.T2 === '1') { t22 = 'บ่าย'; } ; %>
+                    <tr>
+                      <td>
+                        <span><%= dateWithoutTime %></span> :
+                        <span><%=t11%> <P hidden>detail_inter.T1</P></span>
+                        <hr />
+                      </td>
+                      <td>
+                        <%= dateWithoutTime2 %> : <%=t22%>
+                        <hr />
+                      </td>
+                      <td>
+                        <%=detail_inter.EMP_ID1%>
+                        <hr />
+                      </td>
+                      <td>
+                        <%=detail_inter.EMP_ID2%>
+                        <hr />
+                      </td>
+                      <td>
+                        <%=detail_inter.EMP_ID3%>
+                        <hr />
+                      </td>
+                      <td>
+                        <%=detail_inter.INTER_DETAIL%>
+                        <hr />
+                      </td>
+                      <td>
+                        <a
+                          href="/confirm_interview?query=<%= detail_inter.INTER_ID %>"
+                        >
+                          <button
+                            type="submit"
+                            style="padding: 0"
+                            class="btn btn-success"
+                          >
+                            เลือกนัดวัน
+                          </button>
+                        </a>
+                      </td>
+                    </tr>
+
+                    <% index = index+1 }); %>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
       </div>
     </section>
   </div>

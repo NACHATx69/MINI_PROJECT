@@ -1,62 +1,138 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.6.0/css/searchBuilder.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.5.1/css/dataTables.dateTime.min.css" />
+
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1000;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  form p {
+    font-size: 15px;
+    /* ปรับขนาดตัวอักษรตามที่ต้องการ */
+  }
+
+  #namepo {
+    font-size: 22px;
+  }
+
+</style>
+
 <div class="container">
   <div class="card-body min-vh-100">
     <div class="py-2 text-center">
     </div>
 
-    <h2 class="border-bottom pb-2">ประกาศรับสมัครพนักงาน</h2>
+    <h2 class="border-bottom pb-2">คำขอสร้างประกาศสมัครงาน</h2>  <!-- ชื่อหัวข้อ -->
 
     <section class="py-5 text-center container">
 
-      <div class="row mt-5 justify-content-end">
-        <div class="col-3 text-end">
-          <select class="form-select w" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-      </div>
-  
-      <div class="list-group mt-3">
-  
-        <a href="/career_detail" class="list-group-item list-group-item-action active" aria-current="true">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">วิศวะกรเครือข่าย</h5>
-            <small>3 days ago</small>
-          </div>
-          <small class="mb-1">สถาปนิกออกแบบ เขียนแบบโครงสร้าง สถาปัตยกรรม สามารถทำงานต่างจังหวัดได้ สามารถทำงานเสาร์ อาทิตย์ได้</small>
-          <br><small>เงินเดือน ตามตกลง</small>
-        </a>
-  
-        <a href="/career_detail" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">เจ้าหน้าที่สาระสนเทศ (IT)</h5>
-            <small class="text-body-secondary">3 days ago</small>
-          </div>
-          <small class="mb-1">1 เขียนโปรแกรม php 2 support งานคอมพิวเตอร์ทั่วไปตามได้รับมอบหมาย</small>
-          <br><small class="text-body-secondary">เงินเดือน ตามตกลง</small>
-        </a>
-  
-        <a href="/career_detail" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Sale ฝ่ายขาย</h5>
-            <br><small class="text-body-secondary">3 days ago</small>
-          </div>
-          <small class="mb-1">ทำ visit plan พบลูกค้า นำเสนอสินค้าและดูหน้างาน ส่งแบบให้ประเมินราคา ดูพื้นที่ก่อนเข้างาน สรุปreport งานประจำสัปดาห์</small>
-          <br><small class="text-body-secondary">เงินเดือน ตามตกลง</small>
-        </a>
-  
-        <a href="career_detail" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">เจ้าหน้าที่สาระสนเทศ (IT)</h5>
-            <small class="text-body-secondary">3 days ago</small>
-          </div>
-          <small class="mb-1">1 เขียนโปรแกรม php 2 support งานคอมพิวเตอร์ทั่วไปตามได้รับมอบหมาย</small>
-          <br><small class="text-body-secondary">เงินเดือน ตามตกลง</small>
-        </a>
-  
+      <div class="col-12">
+        <table id="example" class="display" style="width:100%">
+          <thead> <!-- หัวตาราง -->
+            <tr>
+              <th class="text-center">รหัส</th>
+              <th class="text-center">แผนก</th>
+              <th class="text-center">ตำแหน่ง</th>
+              <th class="text-center" style="max-width: 300px;">รายละเอียด</th>
+              <th class="text-start"></th>
+              <th class="text-center"></th>
+              
+            </tr>
+          </thead>
+          <tbody> <!--  ข้อมูลในตาราง-->
+            <% for(var i=0; i < data.length; i++) { %>
+            <tr>
+              <td><%= data[i].REQ_LIST_ID  %> </td> <!--แก้ไขที่ REQ_LIST_ID  เปลี่ยนเป็นชื่อคอลัมที่เราคิวรี่ได้ ซึ่งREQ_LIST_ID ก็เป็นข้อมู,ที่เราเก็บไปใน report ตอนทำเร้าท์-->
+              <td><%= data[i].DEPT_NAME %> </td>
+              <td><%= data[i].POS_NAME %> </td>
+              <td class="text-start">
+                <div style="max-width: 350px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  <%= data[i].DETAIL %>
+                </div>
+              </td>
+              <td class="text-start">เงินเดือน <%= data[i].SALARY %> </td>
+              <td>  
+                <a href="/career_detail?application=<%= data[i].REQ_LIST_ID %>">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </td>
+            </tr>
+            <% } %>
+        </table>
       </div>
     </section>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/searchbuilder/1.6.0/js/dataTables.searchBuilder.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.5.1/js/dataTables.dateTime.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable({
+      searching: true,
+      paging: true,
+      info: true,
+      ordering: false
+    });
+
+  });
+</script>

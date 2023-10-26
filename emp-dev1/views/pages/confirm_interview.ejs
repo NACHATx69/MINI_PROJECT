@@ -1,0 +1,130 @@
+<div class="container">
+    <section
+      class="section Interview min-vh-100 d-flex flex-column align-items-top justify-content-top py-4"
+    >
+      <div class="container">
+        <div class="card mb-3 mt-4">
+          <div class="card-body">
+                <!-- Alert -->
+      <!-- <% if (post.create === 'success') { %>
+        <div class="alert alert-success" id="success-alert">
+          การสร้างบัญชีผู้ใช้สำเร็จ
+        </div>
+      <% }else if (post.create === 'fail') { %>
+        <div class="alert alert-danger" id="success-alert">
+          การสร้างบัญชีผู้ใช้ไม่สำเร็จ
+        </div>
+      <% } %>
+      <script>
+          document.addEventListener("DOMContentLoaded", function () {
+          const successAlert = document.getElementById("success-alert");
+  
+          if (successAlert) {
+            setTimeout(function () {
+              successAlert.classList.add("show");
+            }, 100); 
+  
+            setTimeout(function () {
+              successAlert.classList.remove("show");
+            }, 5000); 
+          }
+        });
+      </script> -->
+            
+            <div
+              class="mt-4 m-5"
+              style="background-color: silver; border-radius: 25px"
+            >
+            <div class="m-4">
+             
+              <h5 class="card-title text-left pb-0 fs-4 ">
+                เลือกวันนัดสัมภาษณ์
+              </h5>
+            <form action="/add_record" method="post">
+            
+             <input  id="ID" name="ID" value="<%= post.id %>"  hidden>
+             <input  id="INTER_ID" name="INTER_ID" value="<%= querys.query %>"  hidden>
+             <input  id="EMP_ID" name="EMP_ID" value="<%= post.emp_id %>"  hidden>
+                <div class="mt-4 pt-4">
+                  <span class="text-left mt-4 pt-4">วัน/เวลา</span>
+                  <span class="m-4">
+                    
+                   
+                    </span>
+                    
+                    <div class="mt-3" style="margin-left: 72px">
+                     
+                      <span>
+                        <% post.all.forEach(interviewer => { const
+                          inputDate = interviewer.DAY1ST ; const dateWithoutTime =
+                          new Date(inputDate).toLocaleDateString(); const inputDate2 =
+                          interviewer.DAY2ND ; const dateWithoutTime2 = new
+                          Date(inputDate2).toLocaleDateString(); let t11 = 'เช้า'; let
+                          t22 = 'เช้า'; if (interviewer.T1 === '1') { t11 = 'บ่าย'; }
+                          if (interviewer.T2 === '1') { t22 = 'บ่าย'; } %>
+                          <div style="font-size: large;">
+                            <input type="radio" id="time1" name="time" value="<%= interviewer.DAY1ST %>">
+                              <%= dateWithoutTime %> : <%=t11%> 
+                            <input type="radio"  id="time1" name="time"  value="<%=interviewer.T1%>"> 
+                          </div>
+
+                          <div style="font-size: large;"><input type="radio" id="time2" name="time" value="<%= interviewer.DAY2ND %>"><%= dateWithoutTime2 %> : <%=t22%> <input type="radio" name="time2" id="time2" value="<%=interviewer.T2%>" hidden></div>          
+                        <% }); %>
+                
+                        </span>
+                    </div>
+                    <div class="mt-3 text-muted pb-2 " style="margin-left: 82px ">
+                      ระบุวันที่ต้องการสร้างนัด 2
+                      วันเพื่อให้ผู้รับสัมภาษณ๋เลือกวันที่สะดวก
+                    </div></span
+                  >
+                  <div style="text-align: right;">
+                  <span style="text-align: right; margin-right: 2px;">
+                    <button type="submit" class="btn btn-primary">
+                      <span class="material-symbols-outlined">
+                        done
+                        </span>
+                        Accept
+                    </button>
+                  </span>
+                  
+                </form>
+                  <span class="mt-2 " style="text-align: right; margin-right: 50px;">
+                    <input type="button" id="reset-button" value=" Reset" class="btn btn-primary">
+                   
+                  </span>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            
+             
+               
+            </div>
+            
+          </div>
+       
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    // เลือกปุ่ม Reset โดยใช้ id "reset-button"
+    const resetButton = document.getElementById("reset-button");
+  
+    // เพิ่ม Event Listener ให้กับปุ่ม Reset
+    resetButton.addEventListener("click", function () {
+      // หา radiobutton ที่ต้องการรีเซ็ต โดยใช้ id
+      const radioButton1 = document.getElementById("radioButton1");
+      const radioButton2 = document.getElementById("radioButton2");
+  
+      // รีเซ็ต radiobutton เพื่อไม่เลือกค่าใดเลย
+      radioButton1.checked = false;
+      radioButton2.checked = false;
+    });
+  </script>
+  
+
+
+  

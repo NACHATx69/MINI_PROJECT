@@ -5,7 +5,7 @@ async function career_listRequest() {
     const connection = await connectToDatabase();
     // คำสั่ง SQL เก็บไว้ที่ query
     const query = `
-    SELECT REQ_LIST_ID, FNAME, LNAME, DEPT_NAME,POS_NAME, REQ_LIST.DETAIL, REQ_LIST.STATUS
+    SELECT REQ_LIST_ID, FNAME, LNAME, DEPT_NAME,POS_NAME, REQ_LIST.DETAIL, REQ_LIST.STATUS, SALARY
     from REQ_LIST,EMPLOYEE,POSITION,DEPARTMENT
     where (REQ_LIST.REQ_BY=EMPLOYEE.EMP_ID) AND 
       (POSITION.POS_ID=REQ_LIST.JOB_POSITTION) AND

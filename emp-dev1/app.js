@@ -32,6 +32,12 @@ var applicantInterviewResultRouter = require("./routes/applicant-interviewResult
 var reportApplicantRouter = require("./routes/report_applicant");
 var reportEmployeeRouter = require("./routes/report_emp");
 
+// 
+var interRouter = require("./routes/page_interview");
+var addInterRouter = require("./routes/addinter");
+var comfirm_inter = require("./routes/confirm_interview");
+var addRecordRouter = require("./routes/addrecordRoutes");
+//
 
 var app = express();
 
@@ -63,6 +69,7 @@ app.post("/requestEmp",creatSaveToSqltRouter)
 
 
 app.use("/application",applicationRouter)
+app.post("/application",applicationRouter)
 app.use("/applicant-profile",applicantProfileRouter)
 app.use("/applicant-interviewList",applicantInterviewRouter)
 app.use("/applicant-interviewResult",applicantInterviewResultRouter)
@@ -74,6 +81,13 @@ app.use("/mange_permission",mange_permissionRouter)
 app.post("/mange_permission",mange_permissionRouter)
 app.use("/mange_employee",mange_employeeRouter)
 app.use("/manage-data",roletRouter)
+
+app.post("/inter", addInterRouter);
+app.post("/add_record", addRecordRouter);
+app.use("/confirm_interview", comfirm_inter);
+
+app.use("/pages-interview", interRouter);
+// 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

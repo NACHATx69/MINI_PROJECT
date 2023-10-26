@@ -62,14 +62,14 @@
                 </select>
               </select>
               <div class="invalid-feedback">
-                กรอกตำแหน่งงาน
+                กรอกต่ำแหน่งงาน
               </div>
             </div>
           </div>
 
           <div class="row g-3 mt-2">
             <div class="col-md-4">
-              <label for="DEPARTMENT" class="form-label">การศึกษา</label>
+              <label for="EDUCATION" class="form-label">การศึกษา</label>
               <select class="form-select" id="EDUCATION" name="EDUCATION" required>
                 <option value="" selected>ระบุ....</option> 
                 <% post.study.forEach(level => { %>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="col-md-4">
-              <label for="POSITIONS" class="form-label">ความถนัด</label>
+              <label for="SKILL_EX" class="form-label">ความถนัด</label>
               <select class="form-select" id="SKILL_EX" name="SKILL_EX" required>
                   <option value="" selected>ระบุ....</option> 
                   <% post.skill.forEach(skill => { %>
@@ -99,7 +99,7 @@
           <div class="row g-3 mt-2">
             <div class="col-md-8 mb-3">
               <label for="detail" class="form-label">รายละเอียดงาน</label>
-              <textarea class="form-control" id="DETAIL" name="DETAIL" rows="3" required></textarea>
+              <textarea class="form-control" id="DETAIL" name="DETAIL" rows="10" required maxlength="2000"></textarea>
               <div class="invalid-feedback">
                 กรอกรายละเอียดงาน
               </div>

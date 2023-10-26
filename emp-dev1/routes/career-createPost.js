@@ -27,9 +27,21 @@ router.get('/',async function(req, res, next) {
 
     try {
       const sql_pos = await  getPosittion();
+      const jsonData_pos = JSON.stringify(sql_pos);
+      const dataPossition = JSON.parse(jsonData_pos);
+      
       const sql_dept = await  mgr_name();
+      const jsonData_dept = JSON.stringify(sql_dept);
+      const dataDept = JSON.parse(jsonData_dept);
+
       const sql_skill = await  skill();
+      const jsonData_skill = JSON.stringify(sql_skill);
+      const dataSkill = JSON.parse(jsonData_skill);
+
       const sql_study = await  study();
+      const jsonData_study = JSON.stringify(sql_study);
+      const dataStudy = JSON.parse(jsonData_study);
+
       const ID_app = await genIDapp();
 
       const createParam = req.query.create;
@@ -37,14 +49,14 @@ router.get('/',async function(req, res, next) {
       const post ={
         title: 'สร้างประกาศรับสมัครงาน',
         content: '../pages/career-createPost',
-        posittion: sql_pos,
-        dept: sql_dept,
-        skill: sql_skill,
-        study: sql_study,
+        posittion: dataPossition,
+        dept: dataDept,
+        skill: dataSkill,
+        study: dataStudy,
         create: createParam,
-        genIDapp: ID_app,
-        username: usernameProfile,
+        genIDapp: ID_app
       }
+      console.log('id',ID_app);
       res.render('layouts/base', { post: post });
       } catch (error) {
         console.error("register error: ", error);

@@ -83,13 +83,13 @@
     <section class="py-5 text-center container">
 
       <div class="col-12">
-        <table id="example" class="display nowrap" style="width:100%">
+        <table id="example" class="display" style="width:100%">
           <thead> <!-- หัวตาราง -->
             <tr>
               <th class="text-center">รหัส</th>
               <th class="text-center">แผนก</th>
               <th class="text-center">ตำแหน่ง</th>
-              <th class="text-center">รายละเอียด</th>
+              <th class="text-center" style="max-width: 300px;">รายละเอียด</th>
               <th class="text-center">ผู้ขอ</th>
               <th class="text-center">สถานะ</th>
               <th class="text-center"></th>
@@ -102,7 +102,11 @@
               <td><%= data[i].REQ_LIST_ID  %> </td> <!--แก้ไขที่ REQ_LIST_ID  เปลี่ยนเป็นชื่อคอลัมที่เราคิวรี่ได้ ซึ่งREQ_LIST_ID ก็เป็นข้อมู,ที่เราเก็บไปใน report ตอนทำเร้าท์-->
               <td><%= data[i].DEPT_NAME %> </td>
               <td><%= data[i].POS_NAME %> </td>
-              <td><%= data[i].DETAIL %> </td>
+              <td class="text-start">
+                <div style="max-width: 350px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  <%= data[i].DETAIL %>
+                </div>
+              </td>
               <td><%= data[i].FNAME %> <%= data[i].LNAME %> </td>
               <% if (data[i].STATUS === null) { %>
                 <td>รออนุมัติ</td>
@@ -111,7 +115,8 @@
               <% } %>
      
               <td>  
-                <a href="/career?applicantId=<%= data[i].REQ_LIST_ID %>">
+                <!-- <a href="/career_detail?application=<%= data[i].REQ_LIST_ID %>"> -->
+                  <a href="#">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
               </td>

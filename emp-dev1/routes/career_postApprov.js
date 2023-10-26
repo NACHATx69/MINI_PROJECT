@@ -12,24 +12,9 @@ router.get('/',async function(req, res, next) {
   var secret = JSON.stringify(key.key);
   
   if (!token) {
-		const code = req.query.application;
-    const application = { id: code };
-    const select = await career_findCodeViewDetail(application);
-    
+		// return res.status(401).end()
     const post ={
-      title: 'ประกาศรับสมัครงาน',
-      content: '../pages/career_postedDetail',
-      application:code,
-      REQ_LIST_ID:select[0].REQ_LIST_ID,
-      DETAIL:select[0].DETAIL,
-      SALARY:select[0].SALARY,
-      EXP:select[0].EXP,
-      POS_NAME:select[0].POS_NAME,
-      SKILL_NAME:select[0].SKILL_NAME,
-      STUDY:select[0].STUDY,
-      STATUS:select[0].STATUS,
-      DEPT_NAME:select[0].DEPT_NAME,
-      username: usernameProfile,
+      content: '../pages/page-error404',
     }
     res.render('layouts/base-auth', { post: post });
 	}
@@ -42,6 +27,7 @@ router.get('/',async function(req, res, next) {
     const application = { id: code };
     const select = await career_findCodeViewDetail(application);
     
+    console.log('career_findCodeViewDetail',select);
     const post ={
       title: 'ประกาศรับสมัครงาน',
       content: '../pages/career_postedDetail',
