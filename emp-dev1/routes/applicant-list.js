@@ -5,8 +5,7 @@ var jwt = require("jsonwebtoken");
 const key = require('../authen/key.json');
 
 // --------------------------นำเข้าโมเดล
-const { career_listRequest } = require("../models/career_listRequest.js");
-
+const {applicant_profileAll} = require('../models/applicant_profileAll');
 
 //---------------------------เริ่มทำงานเราท์
 router.get('/',async function(req, res, next) {
@@ -16,7 +15,7 @@ router.get('/',async function(req, res, next) {
   
   if (!token) {                                                   //เช็คว่ามีโทเค็นหรือไม่ ถ้าไม่มีเข้าใช้งานไม่ได้
     const post ={
-      title: 'คำร้องขอกำลังคน',
+      title: 'ข้อมูลผู้สมัครงาน',
       content: '../pages/page-error404',
     }
     res.render('layouts/base-auth', { post: post });
@@ -28,16 +27,16 @@ router.get('/',async function(req, res, next) {
 // ------------------------------------------------------------------------------------------------------------------
 // หลักเราจะเเก้ไขโค้ดที่ส่วนนี้
     try {
-      const report = await career_listRequest();                   //เรียกข้อมูลจาก Oracle โดยใช้ฟังก์ชันโมเดลที่สร้างไว้ สร้างตัวแปรที่เก็บชื่อว่ารีพอต
+      const report = await applicant_profileAll();                   //เรียกข้อมูลจาก Oracle โดยใช้ฟังก์ชันโมเดลที่สร้างไว้ สร้างตัวแปรที่เก็บชื่อว่ารีพอต
           const post ={                                            //เก็บค่าที่นำเข้าไว้ในตัวแปร post เผื่อไปใช้ใน EJS
-            title: 'คำร้องขอกำลังคน',
-            content: '../pages/career-requrestList',
+            title: 'ข้อมูลผู้สมัครงาน',
+            content: '../pages/applicant-list',
             username: usernameProfile
           }
         res.render('layouts/base',{post:post,data: report});      //เรียกใช้งาน EJS นำตัวแปร report ไส่ไว่ใน data 
 //-------------------------------------------------------------------------------------------------------------------
     } catch (error) {                                             //แสดงข้อผิดพลาดเมื่อเกิดเออเร่อ สังเกตุที่EJS หรือโมดูล
-      console.error("คำร้องขอกำลังคน: ", error);
+      console.error("ข้อมูลผู้สมัครงาน: ", error);
       res.status(500).json({ error: "Internal Server Error EJS" });
     }
 	} catch (e) {                                                   //เช็คว่ามีโทเค็นมีปัญหาหรือไม่

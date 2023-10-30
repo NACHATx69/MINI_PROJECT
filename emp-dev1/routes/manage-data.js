@@ -1,10 +1,45 @@
 var express = require('express');
 var router = express.Router();
+const { getPosittion } = require("../models/posittion.js");
+const { updatePosition } = require("../models/mange_permission.js");
 
 var jwt = require("jsonwebtoken");
 const key = require('../authen/key.json');
 
-router.get('/', function(req, res, next) {
+
+
+router.post("/", async function (req, res, next) {
+  try {
+    console.log(req.body)
+    const position = req.body.ID_POS.trim();
+    const createReq = req.body.CREATE_REQ === 'on' ? 1 : 0;
+    const approveCreateReq = req.body.APPROVE_CREATE_REQ === 'on' ? 1 : 0;
+    const postReq = req.body.POST_REQ === 'on' ? 1 : 0;
+    const applSelect = req.body.APPL_SELECT === 'on' ? 1 : 0;
+    const sumReport = req.body.SUM_REPORT === 'on' ? 1 : 0;
+    const managePer = req.body.MANAGE_PER === 'on' ? 1 : 0;
+    console.log(position, createReq, approveCreateReq, postReq, applSelect, sumReport, managePer)
+    await updatePosition(position, createReq, approveCreateReq, postReq, applSelect, sumReport, managePer);
+    const positionData = await getPosittion(); 
+
+    const post ={
+      title: 'การจัดการข้อมูล',
+      content: '../pages/manage-data',
+    
+    }
+
+    res.render('layouts/base',{post:post,data:positionData});
+
+  } catch (error) {
+    console.error("mange_permission error: ", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+module.exports = router;
+// --------------------------------------
+router.get('/',async function(req, res, next) {
   var token = req.cookies.token
   var usernameProfile = req.cookies.user
   var secret = JSON.stringify(key.key);
@@ -20,17 +55,25 @@ router.get('/', function(req, res, next) {
   var payload
 	try {
 		payload = jwt.verify(token, secret)
-    const post ={
-      title: 'ตั้งค่าสิทธิ์',
-      content: '../pages/manage-data',
-      username: usernameProfile
+
+    try {
+      const positionData = await getPosittion(); 
+  
+          const post ={
+            title: 'การจัดการข้อมูล',
+            content: '../pages/manage-data',
+            username: usernameProfile
+          }
+          console.log("getPosittion" , positionData)
+        res.render('layouts/base',{post:post,data:positionData});
+    } catch (error) {
+      console.error("mange_permission error: ", error);
+      res.status(500).json({ error: "Internal Server Error" });
     }
-    // res.send(payload)
-    res.render('layouts/base', { post: post });
 	} catch (e) {
 		if (e instanceof jwt.JsonWebTokenError) {
       const post ={
-        title: 'ตั้งค่าสิทธิ์',
+        title: 'การจัดการข้อมูล',
         content: '../pages/page-error404',
         username: usernameProfile
       }
@@ -39,5 +82,3 @@ router.get('/', function(req, res, next) {
 	}
   
 });
-
-module.exports = router;

@@ -78,7 +78,7 @@
     <div class="py-2 text-center">
     </div>
 
-    <h2 class="border-bottom pb-2">ประกาศสมัครงาน</h2>  <!-- ชื่อหัวข้อ -->
+    <h2 class="border-bottom pb-2">ข้อมูลผู้สมัครงาน</h2>  <!-- ชื่อหัวข้อ -->
 
     <section class="py-5 text-center container">
 
@@ -86,11 +86,15 @@
         <table id="example" class="display" style="width:100%">
           <thead> <!-- หัวตาราง -->
             <tr>
-              <th class="text-center">รหัส</th>
-              <th class="text-center">แผนก</th>
+              <th class="text-center">รหัสผู้สมัคร</th>
+              <th class="text-center">ข้อมูลสมัคร</th>
+              <th class="text-center">ชื่อ</th>
+              <th class="text-center">นามสกุล</th>
               <th class="text-center">ตำแหน่ง</th>
-              <th class="text-center" style="max-width: 300px;">รายละเอียด</th>
-              <th class="text-start"></th>
+              <th class="text-center">แผนก</th>
+              <th class="text-center">เงินเดือน</th>
+              <th class="text-center" style="max-width: 300px;">ประสบการณ์ทำงาน</th>
+              <th class="text-center">การศึกษา</th>
               <th class="text-center"></th>
               
             </tr>
@@ -98,17 +102,18 @@
           <tbody> <!--  ข้อมูลในตาราง-->
             <% for(var i=0; i < data.length; i++) { %>
             <tr>
-              <td><%= data[i].REQ_LIST_ID  %> </td> <!--แก้ไขที่ REQ_LIST_ID  เปลี่ยนเป็นชื่อคอลัมที่เราคิวรี่ได้ ซึ่งREQ_LIST_ID ก็เป็นข้อมู,ที่เราเก็บไปใน report ตอนทำเร้าท์-->
-              <td><%= data[i].DEPT_NAME %> </td>
+              <td><%= data[i].APPL_ID  %> </td> <!--แก้ไขที่ REQ_LIST_ID  เปลี่ยนเป็นชื่อคอลัมที่เราคิวรี่ได้ ซึ่งREQ_LIST_ID ก็เป็นข้อมู,ที่เราเก็บไปใน report ตอนทำเร้าท์-->
+              <td><%= data[i].REQUEST_ID %> </td>
+              <td><%= data[i].FNAME %> </td>
+              <td><%= data[i].LNAME %> </td>
               <td><%= data[i].POS_NAME %> </td>
-              <td class="text-start">
-                <div style="max-width: 350px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                  <%= data[i].DETAIL %>
-                </div>
-              </td>
-              <td class="text-start">เงินเดือน <%= data[i].SALARY %> </td>
+              <td><%= data[i].DEPT_NAME %> </td>
+              <td><%= data[i].SALARY %> </td>
+              <td  style="max-width: 350px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= data[i].EXP %> </td>
+              <td><%= data[i].STUDY %> </td>
+     
               <td>  
-                <a href="/career_detail?application=<%= data[i].REQ_LIST_ID %>">
+                <a href="/applicant-profileApplication?application=<%= data[i].APPL_ID %>" target="_blank">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
               </td>

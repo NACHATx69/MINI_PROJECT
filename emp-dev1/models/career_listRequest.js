@@ -5,11 +5,31 @@ async function career_listRequest() {
     const connection = await connectToDatabase();
     // คำสั่ง SQL เก็บไว้ที่ query
     const query = `
-    SELECT REQ_LIST_ID, FNAME, LNAME, DEPT_NAME,POS_NAME, REQ_LIST.DETAIL, REQ_LIST.STATUS, SALARY
-    from REQ_LIST,EMPLOYEE,POSITION,DEPARTMENT
-    where (REQ_LIST.REQ_BY=EMPLOYEE.EMP_ID) AND 
-      (POSITION.POS_ID=REQ_LIST.JOB_POSITTION) AND
-      DEPARTMENT.DEPT_ID=REQ_LIST.JOB
+      SELECT  R.REQ_LIST_ID,
+        R.DETAIL,
+        R.SALARY,
+        D.DEPT_NAME,
+        D.DEPT_ID,
+        P.POS_NAME,
+        P.POS_ID,
+        EMP.EMP_ID,
+        EMP.FNAME, 
+        EMP.LNAME,
+        EMP.MGR_ID,
+        MGR.FNAME AS MGRF,
+        MGR.LNAME AS MGRL,
+        S.REQ_STATUS AS STATUS
+      from    REQ_LIST R  
+      LEFT JOIN
+        EMPLOYEE EMP ON R.REQ_BY = EMP.EMP_ID
+      LEFT JOIN
+        EMPLOYEE MGR ON EMP.MGR_ID = MGR.EMP_ID
+      INNER JOIN
+       DEPARTMENT D ON R.JOB = D.DEPT_ID
+      INNER JOIN
+        POSITION P ON R.JOB_POSITTION = P.POS_ID
+      INNER JOIN 
+        REQ_STATUS S ON R.STATUS = S.ID
     `;
     const result = await connection.execute(query);
 

@@ -15,7 +15,8 @@
         </div>
       </div>
       <h2 class="border-bottom pb-2"></h2>
-      
+      <input type="text" id="POS_ID" na value="<%= post.POS_ID%>" hidden>
+      <input type="text" id="dept_id" value="<%= post.DEPT_ID%>" hidden>
       <div class="row mb-5">
         <p class="text-end mt-5 px-5">ตำแหน่งงาน <%= post.POS_NAME%></p>
 
@@ -90,7 +91,7 @@
       
 
       <div class="col-12 px-5 mt-5 text-end">
-        <a href="/application?application=<%= post.application%>&JOB=<%= post.DEPT_NAME%> " class="btn btn-primary" type="button">สมัครงาน</a>
+        <a href="/application?application=<%= post.application%>&JOB=<%= post.DEPT_NAME%>&JOB_ID=<%= post.DEPT_ID%>&POSITION=<%= post.POS_ID%>" class="btn btn-primary" type="button">สมัครงาน</a>
       </div>
 
       

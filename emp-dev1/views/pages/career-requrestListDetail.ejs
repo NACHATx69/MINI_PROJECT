@@ -1,0 +1,185 @@
+<section class="section min-vh-100">
+   <!-- Alert -->
+   <% if (post.create === 'success') { %>
+    <div class="row justify-content-end">
+      <div class="alert alert-success text-center" id="alert-result" style="width: auto; display: flex; position: fixed;" >
+        การสร้างสำเร็จ : เลขที่ประกาศ <%= post.genIDapp %> <button class="btn btn-sm p-0 ms-4"  id="close-alert">X</button>
+      </div>
+    </div>
+  <% } else if (post.create === 'fail') { %>
+    <div class="row justify-content-end">
+      <div class="alert alert-danger text-center" id="alert-result" style="width: auto; display: flex; position: fixed;">
+        การสร้างไม่สำเร็จ <button class="btn btn-sm p-0 ms-4"  id="close-alert">X</button>
+      </div>
+    </div>
+  <% } %>    
+  <div class="container px-4 py-2" id="featured-3">
+   
+    <div class="my-3 p-3 pt-4bg-body rounded shadow-sm ">
+      
+      <div class="row">
+        <div class="col-11">
+          <h2 class="pb-2"><%= post.DEPT_NAME%></h2>
+        </div>
+        <div class="col-1">
+          <a href="/career_request" class="btn">
+            <i class="fa-solid fa-xmark"></i>
+          </a>
+        </div>
+      </div>
+      <h2 class="border-bottom pb-2"></h2>
+      
+      <div class="row mb-5">
+        <p class="text-end mt-5 px-5">ตำแหน่งงาน <%= post.POS_NAME%></p>
+
+        <p class="text-end px-5">เงินเดือน <%= post.SALARY%></p>
+        
+        <% if (post.STATUS === 'รออนุมัติจากผู้จัดการแผนก') { %>
+          <div class="col text-end px-5">
+            <div class="badge bg-primary py-2 fs-6" style="width: fit-content; ">
+              สถานะ <%= post.STATUS%> 
+            </div>
+          </div>
+        <% } else if (post.STATUS === 'อนุมัติแล้ว') { %>
+          <div class="col text-end px-5">
+            <div class="badge bg-success py-2 fs-6" style="width: fit-content; ">
+              สถานะ <%= post.STATUS%> 
+            </div>
+          </div>
+        <% } else if (post.STATUS === 'ถูกปฎิเสธ') { %>
+          <div class="col text-end px-5">
+            <div class="badge bg-danger py-2 fs-6" style="width: fit-content; ">
+              สถานะ <%= post.STATUS%> 
+            </div>
+          </div>
+        <% } %>
+        
+
+        <div class="col-12 px-5 mt-5">
+          <div class="d-flex text-body-secondary pt-3 mt-5">
+            <div class="pb-3 mb-0 small lh-sm w-100">
+              <div class="d-flex justify-content-between">
+                <strong class="text-gray-dark fs-5">ความชำนาญ</strong>
+              </div>
+              <span class=""><%= post.SKILL_NAME%></span>
+            </div>
+          </div>
+        </div>  
+
+        <div class="col-12 px-5">
+          <div class="d-flex text-body-secondary pt-3 ">
+            <div class="pb-3 mb-0 small lh-sm w-100">
+              <div class="d-flex justify-content-between">
+                <strong class="text-gray-dark fs-5">การศึกษา</strong>
+              </div>
+              <span class=""><%= post.STUDY%></span>
+            </div>
+          </div>
+        </div>  
+
+        <div class="col-12 px-5">
+          <div class="d-flex text-body-secondary pt-3 ">
+            <div class="pb-3 mb-0 small lh-sm w-100">
+              <div class="d-flex justify-content-between">
+                <strong class="text-gray-dark fs-5">ประสบการณ์ทำงาน</strong>
+              </div>
+              <span class=""><%= post.EXP%></span>
+            </div>
+          </div>
+        </div>  
+
+      <div class="col-12 px-5">
+        <div class="d-flex text-body-secondary pt-3 ">
+          <div class="pb-3 mb-0 small lh-sm w-100">
+            <div class="d-flex justify-content-between">
+              <strong class="text-gray-dark fs-5">รายละเอียดงาน</strong>
+            </div>
+            <span class=""><%= post.DETAIL%></span>
+        </div>
+      </div>  
+    </div>  
+
+    <div class="col-12 px-5">
+      <div class="d-flex text-body-secondary pt-3 ">
+        <div class="pb-3 mb-0 small lh-sm w-100">
+          <div class="d-flex justify-content-between">
+            <strong class="text-gray-dark fs-5">สวัสดิการ</strong>
+          </div>
+          <span>
+            &nbsp;<br>
+            โบนัส<br>
+            วันหยุด-วันลาตามกฎหมาย<br>
+            ประกันสังคม<br>
+            ประกันสุขภาพ<br>
+            ค่าล่วงเวลา<br>
+            เงินออมพิเศษ เช่น สหกรณ์ออมทรัพย์ กองทุนสำรองเลี้ยงชีพ<br>
+            ค่ารักษาพยาบาลบุคคลในครอบครัวของพนักงาน<br>
+            เวลาทำงานที่ยืดหยุ่นได้ (Flexible Hour)<br>
+            ประกันชีวิต<br>
+            เบี้ยขยัน<br>
+          </span>
+      </div>
+    </div> 
+  </div>
+</div> 
+</div>
+
+
+<% if (post.STATUS === 'รออนุมัติจากผู้จัดการแผนก') { %>
+  <% if (post.approverBy === post.profileMgr) { %>
+    <div class="mt-5">
+      <div class="my-3pt-4bg-body rounded shadow-sm profileMgr">
+        <div class="col-12 p-4 mt-5 text-end">
+  
+          <form action="/career_request-dtail" method="POST">
+            <div class="row">
+              <div class="col-10 my-3">
+                <div class="d-flex justify-content-start">
+                  <strong class="text-gray-dark fs-5">พิจารณา</strong>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-floating">
+              <textarea class="form-control commentText" placeholder="Leave a comment here" id="commentText" name="commentText" style="height: 100px"></textarea>
+              <label for="commentText">หากไม่อนุมัติกรุณาระบุเหตุผล</label>
+            </div>
+            <div class="mt-5 approve">
+              <input type="text"  id="approve" name="approve" hidden>
+              <input type="text"  id="req_id" name="req_id"  value="<%= post.REQ_LIST_ID %>" hidden>
+
+              <input type="text"  name="application" id="application"  value="<%= post.application %>" hidden>
+              <input type="text"  name="MGR_ID" id="MGR_ID" name="MGR_ID" value="<%= post.approverBy %>"  hidden>
+  
+              <button type="submit" class="btn btn-success" id="btn-success" name="btn-success" onclick="approveBtn()">อนุมัติ</button>
+              <button type="submit" class="btn btn-danger" id="btn-danger" name="btn-danger" onclick="disapproveBtn()">ไม่อนุมัติ</button>
+  
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  <% } %>
+<%} else {%>
+<%}%>
+
+
+
+
+</section>
+
+<script>
+  function approveBtn() {
+    approve.value = "1";
+  }
+  
+  function disapproveBtn() {
+    var approve = document.getElementById("approve");
+    approve.value = "2";
+  }
+
+  btn_close_alert = document.getElementById("close-alert");
+  btn_close_alert.addEventListener("click", function () {
+        document.getElementById("alert-result").style.display = "none";
+      });
+  </script>

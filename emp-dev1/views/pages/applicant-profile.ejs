@@ -1,15 +1,180 @@
 <div class="container">
-  <div class="card-body min-vh-100">
+  <div class="card-body ">
     <div class="py-2 text-center">
     </div>
 
-    <h2 class="border-bottom pb-2">หน้าว่าง</h2>
+    <div class="row g-5 justify-content-center">
+      <div class="col-md-7 col-lg-8">
+        <h2 class="border-bottom pb-2">ข้อมูลสมัครงาน</h2>
+        <form class="needs-validation" novalidate action="/application?send" method="get">
+          <div class="row g-3">
+            
+            <div class="col-sm-12" style="display: none;">
+              
+            </div style="display: none;">
+            <div class="col-sm-8" >
+             
+            </div>
 
-    <section class="py-5 text-center container">
+            <div class="col-sm-9">
+            </div>
 
-      <div class="col-12">
-        
+            <div class="col-sm-3">
+              <label for="lastName" class="form-label">เงินเดือนที่คาดหวัง</label>
+              <input type="number" class="form-control" id="SALARY" name="SALARY" placeholder="" value="<%= data[0].SALARY %>" readonly>
+              <div class="invalid-feedback">
+                readonly.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <span >ตำแหน่งที่สมัคร: <%= data[0].POS_NAME %></span>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="FNAME" class="form-label">ชื่อ</label>
+              <input type="text" class="form-control" id="FNAME" name="FNAME" placeholder="" value="<%= data[0].FNAME %>" readonly>
+              <div class="invalid-feedback">
+                Valid last name is readonly.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="LNAME" class="form-label">นามสกุล</label>
+              <input type="text" class="form-control" id="LNAME" name="LNAME" placeholder="" value="<%= data[0].LNAME %>" readonly>
+              <div class="invalid-feedback">
+                readonly.
+              </div>
+            </div>
+            
+            <div class="col-md-12">
+              <label for="EDUCATION" class="form-label">การศึกษา</label>
+              <input type="text" class="form-control" id="EDUCATION" name="EDUCATION" placeholder="" value="<%= data[0].STUDY %>" readonly>
+              <div class="invalid-feedback">
+                readonly.
+              </div>
+              <div class="invalid-feedback">
+                กรอกการศึกษา
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <label for="ADDRESS" class="form-label">ที่อยู่</label>
+              <input type="text" class="form-control" id="ADDRESS" name="ADDRESS" placeholder="" value="<%= data[0].ADDRESS %>" readonly>
+              <div class="invalid-feedback">
+                readonly.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="TEL" class="form-label">เบอร์มือถือ</label>
+              <input type="text" class="form-control" id="TEL" name="TEL" placeholder="" value="<%= data[0].TELL %>" readonly>
+              <div class="invalid-feedback">
+                Valid first username is readonly.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">อีเมล</label>
+              <input type="MAIL" class="form-control" id="EMAIL" name="EMAIL" placeholder="" value="<%= data[0].EMAIL %>" readonly>
+              <div class="invalid-feedback">
+                Valid last password is readonly.
+              </div>
+            </div>
+
+            <div class="col-12 mt-4">
+              <h6 class="mt-4">ความชำนาญ</h6>
+            </div>
+            
+            <div class="col-md-6">
+              <label for="SKILL1" class="form-label">ความถนัด 1</label>
+              <input type="text" class="form-control" id="SKILL1" name="SKILL1" placeholder="" value="<%= data[0].SKILL1 %>" readonly>
+              <div class="invalid-feedback">
+                Valid last password is readonly.
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="SKILL2" class="form-label">ความถนัด 2</label>
+              <input type="text" class="form-control" id="SKILL2" name="SKILL2" placeholder="" value="<%= data[0].SKILL2 %>" readonly>
+              <div class="invalid-feedback">
+                Valid last password is readonly.
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="SKILL3" class="form-label">ความถนัด 3</label>
+              <input type="text" class="form-control" id="SKILL3" name="SKILL3" placeholder="" value="<%= data[0].SKILL3 %>" readonly>
+              <div class="invalid-feedback">
+                Valid last password is readonly.
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="SKILL4" class="form-label">ความถนัด 4</label>
+              <input type="text" class="form-control" id="SKILL4" name="SKILL4" placeholder="" value="<%= data[0].SKILL4 %>" readonly>
+              <div class="invalid-feedback">
+                Valid last password is readonly.
+              </div>
+            </div>
+
+            
+            <div class="col-12 mt-4">
+              <h6 class="mt-4">ประสบการณ์ทำงาน</h6>
+            </div>
+
+            <div class="col-12">
+              <label for="EXP" class="form-label">ประสบการณ์ทำงาน 4</label>
+              <input type="text" class="form-control" id="EXP" name="EXP" placeholder="" value="<%= data[0].EXP %>" readonly>
+              <div class="invalid-feedback">
+                Valid last password is readonly.
+              </div>
+            </div>
+            
+            <div class="col-sm-12">
+              <label for="DOC" class="form-label">เอกสารยืนสมัครงาน (ลิงค์)</label>
+              <input type="text" class="form-control" id="DOC" name="DOC" placeholder="" value="<%= data[0].LINK_FOLIO %>" readonly>
+              <div class="invalid-feedback">
+                Valid last password is readonly.
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <label for="DATE_FORM" class="form-label">วันที่สมัคร</label>
+              <input type="text" class="form-control" id="DATE_FORM" name="DATE_FORM" placeholder="" value="<%= data[0].DATE_FORM %>" readonly>
+              <div class="invalid-feedback">
+                Valid last password is readonly.
+              </div>
+            </div>
+            
+
+          </div>
+          <hr class="mt-4">
+
+          <!-- <div class="col justify-content-center " >
+            <div class="row justify-content-center mt-4">
+              <button class="w-50 btn btn-primary btn-lg mt-4" type="submit">สมัครงาน</button>
+            </div>
+          </div> -->
+        </form>
       </div>
-    </section>
+    </div>
+  </div>
+  <div style="height: 100vh;">
+
   </div>
 </div>
+
+<script>
+  function formatDate(inputDate) {
+    const date = new Date(inputDate);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // เริ่มนับเดือนที่ 0
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
+  const inputDate = document.getElementById("DATE_FORM").value;
+  const formattedDate = formatDate(inputDate);
+  document.getElementById("DATE_FORM").value = formattedDate;
+</script>

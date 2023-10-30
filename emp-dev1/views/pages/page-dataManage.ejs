@@ -3,12 +3,52 @@
     <div class="py-2 text-center">
     </div>
 
-    <h2 class="border-bottom pb-2">หน้าว่าง</h2>
+    <h2 class="border-bottom pb-2">ประเมินคะเเนน</h2>
 
     <section class="py-5 text-center container">
 
       <div class="col-12">
-        
+        <form action="#">
+          <div class="row">
+            <div class="col-md-6">
+              <h2>การทดสอบด้านเทคนิค</h2>
+              <input type="number" class="form-control" placeholder="คะแนน" min="1" max="10">
+            </div>
+            <div class="col-md-6">
+              <h2>การมีส่วนร่วม มนุษย์สัมพันธ์</h2>
+              <input type="number" class="form-control" placeholder="คะแนน" min="1" max="10">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <h2>ความคิดสร้างสรรค์</h2>
+              <input type="number" class="form-control" placeholder="คะแนน" min="1" max="10">
+            </div>
+            <div class="col-md-6">
+              <h2>การเรียนรู้</h2>
+              <input type="number" class="form-control" placeholder="คะแนน" min="1" max="10">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>จากการพิจารณาท่านสนใจรับผู้สมัครเข้าร่วมทำงานหรือไม่</h2>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="interest" value="yes">
+                <label class="form-check-label" for="yes">ใช่</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="interest" value="no">
+                <label class="form-check-label" for="no">ไม่ใช่</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary">บันทึก</button>
+            </div>
+          </div>
+        </form>
+      </div>
       </div>
     </section>
   </div>

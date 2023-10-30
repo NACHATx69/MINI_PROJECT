@@ -1,10 +1,12 @@
 const { connectToDatabase } = require("../config/db");
 
-async function getRangetime() {
+async function applicant_list() {
   try {
     const connection = await connectToDatabase();
-    // ทำตามคำสั่ง SQL ที่ต้องการ
-    const query = "SELECT * FROM Range_time";
+    // คำสั่ง SQL เก็บไว้ที่ query
+    const query = `
+    SELECT * FROM APPLICANT
+    `;
     const result = await connection.execute(query);
 
     //json file
@@ -14,14 +16,18 @@ async function getRangetime() {
         data[result.metaData[i].name] = row[i];
       }
       return data;
+      
+      
     });
-    console.log(data);
+
     await connection.close();
+    console.log(data);
     return data;
   } catch (error) {
     throw error;
   }
-}
-getRangetime();
+};
 
-module.exports = { getRangetime };
+applicant_list()
+
+module.exports = { applicant_list };

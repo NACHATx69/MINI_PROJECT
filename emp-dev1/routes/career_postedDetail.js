@@ -25,11 +25,13 @@ router.get('/',async function(req, res, next) {
       SALARY:select[0].SALARY,
       EXP:select[0].EXP,
       POS_NAME:select[0].POS_NAME,
+      POS_ID:select[0].POS_ID,
       SKILL_NAME:select[0].SKILL_NAME,
       STUDY:select[0].STUDY,
       STATUS:select[0].STATUS,
       DEPT_NAME:select[0].DEPT_NAME,
-      username: usernameProfile,
+      DEPT_ID:select[0].DEPT_ID,
+      username: usernameProfile
     }
     res.render('layouts/base-auth', { post: post });
 	}

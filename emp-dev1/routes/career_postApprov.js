@@ -1,63 +1,49 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 var jwt = require("jsonwebtoken");
-const key = require('../authen/key.json');
+const key = require("../authen/key.json");
 
-const { career_findCodeViewDetail } = require('../models/career_findCodeViewDetail')
+const { career_listRequest } = require("../models/career_listRequest.js");
 
-router.get('/',async function(req, res, next) {
-  var token = req.cookies.token
-  var usernameProfile = req.cookies.user
+router.get("/", async function (req, res, next) {
+  var token = req.cookies.token;
+  var usernameProfile = req.cookies.user;
+  var usernameID = req.cookies.ID;
   var secret = JSON.stringify(key.key);
-  
+
   if (!token) {
-		// return res.status(401).end()
-    const post ={
-      content: '../pages/page-error404',
-    }
-    res.render('layouts/base-auth', { post: post });
-	}
+    // return res.status(401).end()
+    const post = {
+      title: "ตำแหน่งที่สเปิดรับสมัคร",
+      content: "../pages/page-error404",
+    };
+    res.render("layouts/base-auth", { post: post });
+  }
 
-  var payload
-	try {
-		payload = jwt.verify(token, secret)
+  var payload;
+  try {
+    payload = jwt.verify(token, secret);
 
-    const code = req.query.application;
-    const application = { id: code };
-    const select = await career_findCodeViewDetail(application);
-    
-    console.log('career_findCodeViewDetail',select);
+    const report = await career_listRequest();     
     const post ={
-      title: 'ประกาศรับสมัครงาน',
-      content: '../pages/career_postedDetail',
-      application:code,
-      REQ_LIST_ID:select[0].REQ_LIST_ID,
-      DETAIL:select[0].DETAIL,
-      SALARY:select[0].SALARY,
-      EXP:select[0].EXP,
-      POS_NAME:select[0].POS_NAME,
-      SKILL_NAME:select[0].SKILL_NAME,
-      STUDY:select[0].STUDY,
-      STATUS:select[0].STATUS,
-      DEPT_NAME:select[0].DEPT_NAME,
-      username: usernameProfile,
+      title: 'ตำแหน่งที่สเปิดรับสมัคร',
+      content: '../pages/career-posted',
     }
-    
-    // res.send(post);
-    res.render('layouts/base', { post: post });
-	} catch (e) {
-		if (e instanceof jwt.JsonWebTokenError) {
-      const post ={
-        title: 'ประกาศรับสมัครงาน',
-        content: '../pages/page-error404',
-        username: usernameProfile
-      }
-      res.render('layouts/base', { post: post });
-		}
-	}
-  
+    console.log(report)
+    res.render('layouts/base', { post: post,data: report});
+  } catch (e) {
+    if (e instanceof jwt.JsonWebTokenError) {
+      const post = {
+        title: "ตำแหน่งที่สเปิดรับสมัคร",
+        content: "../pages/page-error404",
+        username: usernameProfile,
+      };
+      res.render("layouts/base", { post: post });
+      // return res.json({ error: 'invalid token' })
+      // return res.status(401).end()
+    }
+  }
 });
 
 module.exports = router;
-

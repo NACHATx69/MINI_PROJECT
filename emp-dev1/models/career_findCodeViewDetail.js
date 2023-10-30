@@ -5,17 +5,27 @@ async function career_findCodeViewDetail(application) {
     const connection = await connectToDatabase();
     // คำสั่ง SQL เก็บไว้ที่ query
     const query = `
-      SELECT REQ_LIST_ID, DETAIL, REQ_LIST.SALARY, REQ_LIST.EXP, REQ_LIST.STATUS, 
-        DEPT_NAME,
-        POSITION.POS_NAME,
-        SKILL_NAME,
-        STUDY.STUDY
-      FROM REQ_LIST, DEPARTMENT, POSITION, SKILL, STUDY
-      WHERE (REQ_LIST.REQ_LIST_ID = :id) AND
-        (DEPARTMENT.DEPT_ID = REQ_LIST.JOB) AND
-        (POSITION.POS_ID = REQ_LIST.JOB_POSITTION) AND
-        (SKILL.SKILL_ID = REQ_LIST.SKILL_EX) AND
-        (STUDY.ID = REQ_LIST.STUDY)
+    SELECT
+      R.REQ_LIST_ID, 
+      R.DETAIL, 
+      R.SALARY, 
+      R.EXP, 
+      D.DEPT_NAME,
+      D.DEPT_ID,
+      P.POS_NAME,
+      P.POS_ID,
+      COALESCE(S1.SKILL_NAME, '') || ', ' || COALESCE(S2.SKILL_NAME, '') || ', ' || COALESCE(S3.SKILL_NAME, '') AS SKILL_NAME,
+      E.STUDY,
+      S.REQ_STATUS AS STATUS
+    FROM REQ_LIST R
+      LEFT JOIN SKILL S1 ON R.SKILL_EX1 = S1.SKILL_ID
+      LEFT JOIN SKILL S2 ON R.SKILL_EX2 = S2.SKILL_ID
+      LEFT JOIN SKILL S3 ON R.SKILL_EX3 = S3.SKILL_ID
+      INNER JOIN DEPARTMENT D ON R.JOB = D.DEPT_ID
+      INNER JOIN POSITION P ON R.JOB_POSITTION = P.POS_ID
+      INNER JOIN STUDY E ON R.STUDY = E.ID
+      INNER JOIN REQ_STATUS S ON R.STATUS = S.ID
+    WHERE R.REQ_LIST_ID = :id
     `;
     const result = await connection.execute(query, application);
     const data = result.rows.map((row) => {

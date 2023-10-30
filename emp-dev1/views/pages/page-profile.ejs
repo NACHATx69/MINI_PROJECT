@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card-body min-vh-100">
+    <div class="py-2 text-center">
+    </div>
+
+    <h2 class="border-bottom pb-2">โปรไฟล์</h2>
+
+    <section class="py-5 container">
+
+      <div class="row mt-2 justify-content-start">
+        <% for (var i = 0; i < data.length; i++) { %>
+          <div class="col-md-4 mb-3">
+            <p class="card-text">ชื่อผู้ใช้: <%= data[i].FNAME %> <%= data[i].LNAME %></p>
+          </div>
+          <div class="col-md-8 mb-3">
+            <p class="card-text">แผนก: <%= data[i].DEPT_NAME %></p>
+          </div>
+          <div class="col-md-4 mb-3">
+            <p class="card-text">ต่ำแหน่ง: <%= data[i].FNAME %> <%= data[i].POS_NAME %></p>
+          </div>
+          <div class="col-md-8 mb-3">
+            <p class="card-text">ผู้จัดการ: <%= data[i].MGR_FNAME %> <%= data[i].MGR_LNAME %></p>
+          </div>
+        <% } %>
+      </div>
+    </section>
+  </div>
+</div>

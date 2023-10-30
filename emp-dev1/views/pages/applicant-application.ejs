@@ -39,6 +39,8 @@
               
             </div style="display: none;">
             <div class="col-sm-8" >
+              <input type="text" id="JOB_ID" name="JOB_ID" value="<%= post.JOB_ID%>" hidden>
+              <input type="text" id="DEPT_ID" name="DEPT_ID" value="<%= post.DEPT_ID%>" hidden>
               <input type="text" id="APPL_ID" NAME="APPL_ID" value="<%= post.APPL_ID%>" hidden>
               <input type="text" id="REQUEST_ID" NAME="REQUEST_ID" value="<%= post.application%>"hidden>
             </div>
@@ -55,7 +57,8 @@
             </div>
 
             <div class="col-12">
-              <p>ตำแหน่งที่สมัคร: <%= post.JOB %></p>
+              <input id="JOB" name="JOB" value="<%= post.JOB %>" hidden>
+              <span >ตำแหน่งที่สมัคร: <%= post.JOB %></span>
             </div>
 
             <div class="col-sm-6">
@@ -118,7 +121,7 @@
             
             <div class="col-md-6">
               <label for="SKILL1" class="form-label">ความถนัด 1</label>
-              <select class="form-select" id="SKILL_EX1" name="SKILL_EX1" >
+              <select class="form-select" id="SKILL_EX1" name="SKILL_EX1" required>
                   <option value="" selected>ระบุ....</option> 
                   <% post.skill.forEach(skill => { %>
                     <option value="<%= skill.ID %>"><%= skill.SKILL %></option>
@@ -132,7 +135,7 @@
 
             <div class="col-md-6">
               <label for="SKILL2" class="form-label">ความถนัด 2</label>
-              <select class="form-select" id="SKILL_EX2" name="SKILL_EX2" >
+              <select class="form-select" id="SKILL_EX2" name="SKILL_EX2" required>
                   <option value="" selected>ระบุ....</option> 
                   <% post.skill.forEach(skill => { %>
                     <option value="<%= skill.ID %>"><%= skill.SKILL %></option>
@@ -146,7 +149,7 @@
 
             <div class="col-md-6">
               <label for="SKILL3" class="form-label">ความถนัด 3</label>
-              <select class="form-select" id="SKILL_EX3" name="SKILL_EX3" >
+              <select class="form-select" id="SKILL_EX3" name="SKILL_EX3" required>
                   <option value="" selected>ระบุ....</option> 
                   <% post.skill.forEach(skill => { %>
                     <option value="<%= skill.ID %>"><%= skill.SKILL %></option>
@@ -160,7 +163,7 @@
 
             <div class="col-md-6">
               <label for="SKILL4" class="form-label">ความถนัด 4</label>
-              <select class="form-select" id="SKILL_EX4" name="SKILL_EX4" >
+              <select class="form-select" id="SKILL_EX4" name="SKILL_EX4" required>
                   <option value="" selected>ระบุ....</option> 
                   <% post.skill.forEach(skill => { %>
                     <option value="<%= skill.ID %>"><%= skill.SKILL %></option>

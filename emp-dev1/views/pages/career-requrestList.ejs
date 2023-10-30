@@ -90,9 +90,11 @@
               <th class="text-center">แผนก</th>
               <th class="text-center">ตำแหน่ง</th>
               <th class="text-center" style="max-width: 300px;">รายละเอียด</th>
+              <th class="text-center">รหัสผู้ขอ</th>
               <th class="text-center">ผู้ขอ</th>
+              <th class="text-center">ผู้อนุมัติ</th>
               <th class="text-center">สถานะ</th>
-              <th class="text-center"></th>
+              <!-- <th class="text-center"></th> -->
               
             </tr>
           </thead>
@@ -107,19 +109,42 @@
                   <%= data[i].DETAIL %>
                 </div>
               </td>
+              <td><%= data[i].EMP_ID %></td>
               <td><%= data[i].FNAME %> <%= data[i].LNAME %> </td>
-              <% if (data[i].STATUS === null) { %>
-                <td>รออนุมัติ</td>
-                <% } else if (data[i].STATUS == 1) { %>
-                <td>ทำงานอยู่</i></td>
-              <% } %>
+              <td><%= data[i].MGRF %> <%= data[i].MGRL %></td>
+              <td>
+                <% if (data[i].STATUS === 'รออนุมัติจากผู้จัดการแผนก') { %>
+                  <div class="col text-end px-5">
+                    <a href="/career_request-dtail?application=<%= data[i].REQ_LIST_ID %>&MGR_ID=<%= data[i].MGR_ID %>">
+                      <div class="badge bg-primary py-2 fs-6 text-wrap" style="width: 10rem; ">
+                        สถานะ <%= data[i].STATUS%> 
+                      </div>
+                    </a>
+                  </div>
+                <% } else if (data[i].STATUS === 'อนุมัติแล้ว') { %>
+                  <div class="col text-end px-5">
+                    <a href="/career_request-dtail?application=<%= data[i].REQ_LIST_ID %>&MGR_ID=<%= data[i].MGR_ID %>">
+                      <div class="badge bg-success py-2 fs-6 text-wrap" style="width: 10rem; ">
+                        สถานะ <%= data[i].STATUS%> 
+                      </div>
+                    </a>
+                  </div>
+                <% } else if (data[i].STATUS === 'ถูกปฎิเสธ') { %>
+                  <div class="col text-end px-5">
+                    <a href="/career_request-dtail?application=<%= data[i].REQ_LIST_ID %>&MGR_ID=<%= data[i].MGR_ID %>">
+                      <div class="badge bg-danger py-2 fs-6 text-wrap" style="width: 10rem; ">
+                        สถานะ <%= data[i].STATUS%> 
+                      </div>
+                    </a>
+                  </div>
+                <% } %>
+              </td>
      
-              <td>  
-                <!-- <a href="/career_detail?application=<%= data[i].REQ_LIST_ID %>"> -->
-                  <a href="#">
+              <!-- <td>  
+                <a href="/career_request-dtail?application=<%= data[i].REQ_LIST_ID %>&MGR_ID=<%= data[i].MGR_ID %>">
                   <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
-              </td>
+              </td> -->
             </tr>
             <% } %>
         </table>
@@ -144,37 +169,3 @@
 
   });
 </script>
-
-<!-- <script>
-  var modal = document.getElementById("editdata");
-  var btns = document.getElementsByClassName("btn btn-warning");
-
-  var span = document.getElementsByClassName("close")[0];
-
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].onclick = function() {
-      modal.style.display = "block";
-      var namepoElement = this.parentElement.parentElement.getElementsByTagName("td")[0];
-      var namepo = namepoElement.innerText;
-      document.getElementById("namepo").innerText = namepo;
-
-    }
-  }
-
-  $("#mysubmit").click(function(event) {
-      var confirmation = confirm("ยืนยันการเเก้ไข");
-      if (!confirmation) {
-        event.preventDefault();
-      }
-    });
-
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-</script> -->

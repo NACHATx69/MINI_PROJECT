@@ -81,9 +81,11 @@
               </div>
             </div>
 
-            <div class="col-md-4">
-              <label for="SKILL_EX" class="form-label">ความถนัด</label>
-              <select class="form-select" id="SKILL_EX" name="SKILL_EX" required>
+          <div class="row g-3 mt-2">
+
+            <div class="col-md-4 mt-2">
+              <label for="SKILL_EX" class="form-label">ความถนัด1</label>
+              <select class="form-select" id="SKILL_EX1" name="SKILL_EX1" required>
                   <option value="" selected>ระบุ....</option> 
                   <% post.skill.forEach(skill => { %>
                     <option value="<%= skill.ID %>"><%= skill.SKILL %></option>
@@ -94,7 +96,36 @@
                 กรอกความถนัด
               </div>
             </div>
+
+           <div class="col-md-4 mt-2">
+            <label for="SKILL_EX" class="form-label">ความถนัด2</label>
+            <select class="form-select" id="SKILL_EX2" name="SKILL_EX2" required>
+                <option value="" selected>ระบุ....</option> 
+                <% post.skill.forEach(skill => { %>
+                  <option value="<%= skill.ID %>"><%= skill.SKILL %></option>
+                <% }); %>
+              </select>
+            </select>
+            <div class="invalid-feedback">
+              กรอกความถนัด
+            </div>
           </div>
+          
+          <div class="col-md-4 mt-2">
+            <label for="SKILL_EX" class="form-label">ความถนัด1</label>
+            <select class="form-select" id="SKILL_EX3" name="SKILL_EX3" required>
+                <option value="" selected>ระบุ....</option> 
+                <% post.skill.forEach(skill => { %>
+                  <option value="<%= skill.ID %>"><%= skill.SKILL %></option>
+                <% }); %>
+              </select>
+            </select>
+            <div class="invalid-feedback">
+              กรอกความถนัด
+            </div>
+          </div>
+
+        </div>
 
           <div class="row g-3 mt-2">
             <div class="col-md-8 mb-3">

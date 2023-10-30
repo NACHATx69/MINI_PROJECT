@@ -15,29 +15,20 @@ var authenRouter = require("./routes/page-login_auth");
 var singoutRouter = require("./routes/page-singout");
 var roletRouter = require("./routes/manage-data");
 
-var mange_permissionRouter = require("./routes/mange_permission");
-var mange_employeeRouter = require("./routes/mange_employee");
+var profileRouter = require ("./routes/page-profile");
 
 var careerRouter = require("./routes/career_posted");
+var careerApproveRouter = require("./routes/career_postApprov");
 var careerDetailRouter = require("./routes/career_postedDetail");
 var createJobDesRouter = require("./routes/career-createPost");
 var createRequestRouter = require("./routes/career-requrestList");
+var createRequestDetailRouter = require("./routes/career-requrestListDtail");
 var creatSaveToSqltRouter = require("./routes/career-createPostToSql");
 
 var applicationRouter = require("./routes/applicant-application");
-var applicantProfileRouter = require("./routes/applicant-profile");
-var applicantInterviewRouter = require("./routes/applicant-interviewList");
-var applicantInterviewResultRouter = require("./routes/applicant-interviewResult");
+var applicantProfileRouter = require("./routes/applicant-list");
+var applicantProfileDetailRouter = require("./routes/applicant-profile");
 
-var reportApplicantRouter = require("./routes/report_applicant");
-var reportEmployeeRouter = require("./routes/report_emp");
-
-// 
-var interRouter = require("./routes/page_interview");
-var addInterRouter = require("./routes/addinter");
-var comfirm_inter = require("./routes/confirm_interview");
-var addRecordRouter = require("./routes/addrecordRoutes");
-//
 
 var app = express();
 
@@ -62,32 +53,21 @@ app.use("/singout",singoutRouter)
 app.use("/role",roletRouter)
 
 app.use("/career",careerRouter);
+app.use("/career_approve",careerApproveRouter);
 app.use("/career_request",createRequestRouter);
+app.use("/career_request-dtail",createRequestDetailRouter);
 app.use("/career_detail",careerDetailRouter);
 app.use("/createJobDescription",createJobDesRouter)
 app.post("/requestEmp",creatSaveToSqltRouter)
 
 
 app.use("/application",applicationRouter)
-app.post("/application",applicationRouter)
 app.use("/applicant-profile",applicantProfileRouter)
-app.use("/applicant-interviewList",applicantInterviewRouter)
-app.use("/applicant-interviewResult",applicantInterviewResultRouter)
+app.use("/applicant-profileApplication",applicantProfileDetailRouter)
 
-app.use("/report-applicant",reportApplicantRouter)
-app.use("/report-employee",reportEmployeeRouter)
-
-app.use("/mange_permission",mange_permissionRouter)
-app.post("/mange_permission",mange_permissionRouter)
-app.use("/mange_employee",mange_employeeRouter)
 app.use("/manage-data",roletRouter)
+app.use("/profile", profileRouter);
 
-app.post("/inter", addInterRouter);
-app.post("/add_record", addRecordRouter);
-app.use("/confirm_interview", comfirm_inter);
-
-app.use("/pages-interview", interRouter);
-// 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

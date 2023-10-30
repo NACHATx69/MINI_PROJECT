@@ -6,7 +6,7 @@ async function applicant_add(agm) {
     const connection = await connectToDatabase();
     const sql = `
     INSERT INTO APPLICANT (
-      APPL_ID, CARREER_ID,
+      APPL_ID, REQUEST_ID,
       FNAME, LNAME, EMAIL, TELL, SALARY, ADDRESS,
       SKILL_EX1, SKILL_EX2, SKILL_EX3, SKILL_EX4,
       EXP, STUDY,
@@ -50,10 +50,10 @@ async function applicant_add(agm) {
 }
 
 const newApplicantData = {
-  APPL_ID: 'A25661025005',
-  REQUEST_ID: 'C25661025008',
-  FNAME: 'John',
-  LNAME: 'Doe',
+  APPL_ID: 'A25661025091',
+  REQUEST_ID: 'C25661026008',
+  FNAME: 'ยีน',
+  LNAME: 'ยีน',
   EMAIL: 'johndoe@example.com',
   TELL: '1234567890',
   SALARY: '50000',
@@ -68,12 +68,12 @@ const newApplicantData = {
   DATE_FORM: '',
 };
 
-applicant_add(newApplicantData)
-  .then((result) => {
-    console.log("Data inserted successfully:", result);
-  })
-  .catch((error) => {
-    console.error("Error inserting data:", error);
-  });
+// applicant_add(newApplicantData)
+//   .then((result) => {
+//     console.log("Data inserted successfully:", result);
+//   })
+//   .catch((error) => {
+//     console.error("Error inserting data:", error);
+//   });
 
 module.exports = { applicant_add };
